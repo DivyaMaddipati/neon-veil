@@ -47,8 +47,8 @@
   body {
     @apply bg-black text-foreground font-montserrat;
     background-image: 
-      radial-gradient(circle at 20% 25%, rgba(108, 67, 255, 0.05) 0%, transparent 35%),
-      radial-gradient(circle at 80% 75%, rgba(255, 107, 0, 0.05) 0%, transparent 35%);
+      radial-gradient(circle at 20% 25%, rgba(108, 67, 255, 0.1) 0%, transparent 45%),
+      radial-gradient(circle at 80% 75%, rgba(255, 107, 0, 0.1) 0%, transparent 45%);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -62,21 +62,21 @@
   }
   
   .glow-purple {
-    @apply shadow-[0_0_10px_rgba(108,67,255,0.5),0_0_20px_rgba(108,67,255,0.3)];
+    @apply shadow-[0_0_15px_rgba(108,67,255,0.6),0_0_30px_rgba(108,67,255,0.4)];
   }
   
   .glow-orange {
-    @apply shadow-[0_0_10px_rgba(255,107,0,0.5),0_0_20px_rgba(255,107,0,0.3)];
+    @apply shadow-[0_0_15px_rgba(255,107,0,0.6),0_0_30px_rgba(255,107,0,0.4)];
   }
   
   .btn-primary {
     @apply bg-[#6c43ff] text-white font-medium py-2 px-6 rounded-full transition-all 
-    shadow-[0_0_10px_rgba(108,67,255,0.5)] hover:shadow-[0_0_15px_rgba(108,67,255,0.8),0_0_30px_rgba(108,67,255,0.4)];
+    shadow-[0_0_15px_rgba(108,67,255,0.5)] hover:shadow-[0_0_20px_rgba(108,67,255,0.8),0_0_40px_rgba(108,67,255,0.4)];
   }
   
   .btn-secondary {
     @apply bg-hackathon-orange text-white font-medium py-2 px-6 rounded-full transition-all 
-    shadow-[0_0_10px_rgba(255,107,0,0.5)] hover:shadow-[0_0_15px_rgba(255,107,0,0.8),0_0_30px_rgba(255,107,0,0.4)];
+    shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:shadow-[0_0_20px_rgba(255,107,0,0.8),0_0_40px_rgba(255,107,0,0.4)];
   }
   
   .section-title {
@@ -93,7 +93,7 @@
   
   .text-glow {
     @apply text-white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(108, 67, 255, 0.6), 0 0 30px rgba(108, 67, 255, 0.4);
   }
 }
 

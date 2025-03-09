@@ -45,12 +45,21 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   return (
     <div className="flex justify-center items-center">
       <div className="text-center">
-        <div className="text-6xl md:text-8xl font-bold text-white flex items-center justify-center tracking-widest">
-          <span className="text-glow">{String(timeLeft.hours).padStart(2, '0')}</span>
-          <span className="mx-4 text-white">:</span>
-          <span className="text-glow">{String(timeLeft.minutes).padStart(2, '0')}</span>
-          <span className="mx-4 text-white">:</span>
-          <span className="text-glow">{String(timeLeft.seconds).padStart(2, '0')}</span>
+        <div className="text-6xl md:text-8xl font-bold flex items-center justify-center tracking-widest space-x-4">
+          <div className="flex flex-col items-center">
+            <span className="text-glow text-white">{String(timeLeft.hours).padStart(2, '0')}</span>
+            <span className="text-xs md:text-sm text-gray-400 mt-2">HOURS</span>
+          </div>
+          <span className="text-white">:</span>
+          <div className="flex flex-col items-center">
+            <span className="text-glow text-white">{String(timeLeft.minutes).padStart(2, '0')}</span>
+            <span className="text-xs md:text-sm text-gray-400 mt-2">MINUTES</span>
+          </div>
+          <span className="text-white">:</span>
+          <div className="flex flex-col items-center">
+            <span className="text-glow text-white">{String(timeLeft.seconds).padStart(2, '0')}</span>
+            <span className="text-xs md:text-sm text-gray-400 mt-2">SECONDS</span>
+          </div>
         </div>
       </div>
     </div>
