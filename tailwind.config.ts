@@ -55,7 +55,7 @@ export default {
 				},
 				hackathon: {
 					dark: '#101020',
-					cyan: '#00D4FF',
+					purple: '#6c43ff',
 					orange: '#FF6B00'
 				}
 			},
@@ -75,10 +75,10 @@ export default {
 				},
 				'pulse-glow': {
 					'0%, 100%': { 
-						'box-shadow': '0 0 10px 2px rgba(0, 212, 255, 0.4), 0 0 20px 4px rgba(0, 212, 255, 0.2)' 
+						'box-shadow': '0 0 10px 2px rgba(108, 67, 255, 0.4), 0 0 20px 4px rgba(108, 67, 255, 0.2)' 
 					},
 					'50%': { 
-						'box-shadow': '0 0 15px 3px rgba(0, 212, 255, 0.6), 0 0 30px 6px rgba(0, 212, 255, 0.3)' 
+						'box-shadow': '0 0 15px 3px rgba(108, 67, 255, 0.6), 0 0 30px 6px rgba(108, 67, 255, 0.3)' 
 					}
 				},
 				'float': {

@@ -43,33 +43,15 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   return (
-    <div className="grid grid-cols-4 gap-2 text-center">
-      <div className="flex flex-col">
-        <div className="glass py-4 px-2 rounded-lg mb-2 text-2xl md:text-3xl font-bold text-white">
-          {String(timeLeft.days).padStart(2, '0')}
+    <div className="flex justify-center items-center">
+      <div className="text-center">
+        <div className="text-6xl md:text-8xl font-bold text-white flex items-center justify-center tracking-widest">
+          <span>{String(timeLeft.hours).padStart(2, '0')}</span>
+          <span className="mx-4 text-[#6c43ff]">:</span>
+          <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
+          <span className="mx-4 text-[#6c43ff]">:</span>
+          <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
         </div>
-        <span className="text-sm text-gray-300">Days</span>
-      </div>
-      
-      <div className="flex flex-col">
-        <div className="glass py-4 px-2 rounded-lg mb-2 text-2xl md:text-3xl font-bold text-white">
-          {String(timeLeft.hours).padStart(2, '0')}
-        </div>
-        <span className="text-sm text-gray-300">Hours</span>
-      </div>
-      
-      <div className="flex flex-col">
-        <div className="glass py-4 px-2 rounded-lg mb-2 text-2xl md:text-3xl font-bold text-white">
-          {String(timeLeft.minutes).padStart(2, '0')}
-        </div>
-        <span className="text-sm text-gray-300">Minutes</span>
-      </div>
-      
-      <div className="flex flex-col">
-        <div className="glass py-4 px-2 rounded-lg mb-2 text-2xl md:text-3xl font-bold text-white">
-          {String(timeLeft.seconds).padStart(2, '0')}
-        </div>
-        <span className="text-sm text-gray-300">Seconds</span>
       </div>
     </div>
   );

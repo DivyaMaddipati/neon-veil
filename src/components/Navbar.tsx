@@ -2,71 +2,106 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useMobile();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const navLinks = [
+    { name: "Hackathon", href: "#home" },
+    { name: "Guide Lines", href: "#why-participate" },
+    { name: "Get Involved", href: "#schedule" },
+    { name: "Contact", href: "#contact" },
+  ];
 
-  const scrollTo = (id: string) => {
-    setIsMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/70 backdrop-blur-md py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-black/80 backdrop-blur-md py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2 text-2xl font-bold">
-          <span className="gradient-text-cyan">Hack</span>
-          <span className="gradient-text-orange">Nova</span>
-        </a>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          <a href="#" className="text-2xl font-bold">
+            Agent<span className="text-[#6c43ff]">X</span>
+          </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
-          <button onClick={() => scrollTo('about')} className="text-white hover:text-hackathon-cyan transition-colors">About</button>
-          <button onClick={() => scrollTo('challenges')} className="text-white hover:text-hackathon-cyan transition-colors">Challenges</button>
-          <button onClick={() => scrollTo('prizes')} className="text-white hover:text-hackathon-cyan transition-colors">Prizes</button>
-          <button onClick={() => scrollTo('timeline')} className="text-white hover:text-hackathon-cyan transition-colors">Timeline</button>
-          <button onClick={() => scrollTo('faq')} className="text-white hover:text-hackathon-cyan transition-colors">FAQ</button>
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link, index) => (
+              <a 
+                key={index}
+                href={link.href} 
+                className="text-white/80 hover:text-white transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c43ff] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
 
-        <div className="hidden md:block">
-          <Button onClick={() => scrollTo('register')} className="btn-primary">Register Now</Button>
+          <div className="hidden md:block">
+            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8">
+              Login
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-white"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        {/* Mobile menu button */}
-        <button className="md:hidden text-white" onClick={toggleMenu}>
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden glass absolute w-full transition-all duration-300 ease-in-out ${
-        isMenuOpen ? 'max-h-[400px] opacity-100 py-4' : 'max-h-0 opacity-0 overflow-hidden'
-      }`}>
-        <nav className="flex flex-col gap-4 px-4">
-          <button onClick={() => scrollTo('about')} className="text-white hover:text-hackathon-cyan py-2 transition-colors">About</button>
-          <button onClick={() => scrollTo('challenges')} className="text-white hover:text-hackathon-cyan py-2 transition-colors">Challenges</button>
-          <button onClick={() => scrollTo('prizes')} className="text-white hover:text-hackathon-cyan py-2 transition-colors">Prizes</button>
-          <button onClick={() => scrollTo('timeline')} className="text-white hover:text-hackathon-cyan py-2 transition-colors">Timeline</button>
-          <button onClick={() => scrollTo('faq')} className="text-white hover:text-hackathon-cyan py-2 transition-colors">FAQ</button>
-          <Button onClick={() => scrollTo('register')} className="btn-primary w-full">Register Now</Button>
-        </nav>
-      </div>
+      {isMobile && (
+        <div 
+          className={`fixed inset-0 bg-black z-40 transition-all duration-300 ease-in-out transform ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          style={{ top: '60px' }}
+        >
+          <div className="container mx-auto px-4 py-8">
+            <nav className="flex flex-col space-y-6">
+              {navLinks.map((link, index) => (
+                <a 
+                  key={index}
+                  href={link.href} 
+                  className="text-xl text-white/80 hover:text-white transition-colors py-2"
+                  onClick={closeMenu}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4">
+                Login
+              </Button>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
