@@ -46,11 +46,11 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
     <div className="flex justify-center items-center">
       <div className="text-center">
         <div className="text-6xl md:text-8xl font-bold text-white flex items-center justify-center tracking-widest">
-          <span>{String(timeLeft.hours).padStart(2, '0')}</span>
-          <span className="mx-4 text-[#6c43ff]">:</span>
-          <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
-          <span className="mx-4 text-[#6c43ff]">:</span>
-          <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
+          <span className="text-glow">{String(timeLeft.hours).padStart(2, '0')}</span>
+          <span className="mx-4 text-white">:</span>
+          <span className="text-glow">{String(timeLeft.minutes).padStart(2, '0')}</span>
+          <span className="mx-4 text-white">:</span>
+          <span className="text-glow">{String(timeLeft.seconds).padStart(2, '0')}</span>
         </div>
       </div>
     </div>

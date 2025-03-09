@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
@@ -22,10 +23,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Hackathon", href: "#home" },
-    { name: "Guide Lines", href: "#why-participate" },
-    { name: "Get Involved", href: "#schedule" },
-    { name: "Contact", href: "#contact" },
+    { name: "Hackathon", href: "#home", hasDropdown: true },
+    { name: "Guide Lines", href: "#why-participate", hasDropdown: true },
+    { name: "Get Involved", href: "#schedule", hasDropdown: true },
+    { name: "Contact", href: "#contact", hasDropdown: false },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -34,31 +35,31 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-md py-2 shadow-lg' : 'bg-transparent py-4'
+        isScrolled ? 'bg-black/80 backdrop-blur-md py-2 shadow-lg' : 'bg-black py-4'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <a href="#" className="text-2xl font-bold">
-            Agent<span className="text-[#6c43ff]">X</span>
+            AgentX
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-10">
             {navLinks.map((link, index) => (
               <a 
                 key={index}
                 href={link.href} 
-                className="text-white/80 hover:text-white transition-colors relative group"
+                className="text-white flex items-center"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c43ff] transition-all duration-300 group-hover:w-full"></span>
+                {link.hasDropdown && <ChevronDown className="ml-1" size={16} />}
               </a>
             ))}
           </nav>
 
           <div className="hidden md:block">
-            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8">
+            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-10 font-normal">
               Login
             </Button>
           </div>
@@ -88,10 +89,11 @@ const Navbar = () => {
                 <a 
                   key={index}
                   href={link.href} 
-                  className="text-xl text-white/80 hover:text-white transition-colors py-2"
+                  className="text-xl text-white flex items-center justify-between"
                   onClick={closeMenu}
                 >
                   {link.name}
+                  {link.hasDropdown && <ChevronDown size={16} />}
                 </a>
               ))}
               <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4">
