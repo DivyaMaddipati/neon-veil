@@ -4,23 +4,23 @@ import React from 'react';
 const EventScheduleSection = () => {
   const timelineEvents = [
     {
-      title: "Registration Opens",
-      date: "Now",
+      title: "Registrations Open",
+      date: "Mar 14",
       color: "text-[#6c43ff]"
     },
     {
-      title: "Registration Closes",
-      date: "April 20",
+      title: "Registrations Close",
+      date: "Mar 26",
       color: "text-[#6c43ff]"
     },
     {
       title: "Hackathon Day",
-      date: "April 26",
+      date: "Apr 26",
       color: "text-[#6c43ff]"
     },
     {
       title: "Judging & Results",
-      date: "Time",
+      date: "Apr 26 (Evening)",
       color: "text-[#6c43ff]"
     }
   ];
@@ -44,8 +44,8 @@ const EventScheduleSection = () => {
                 <div className="w-6 h-6 rounded-full bg-[#6c43ff] z-10 mb-6 glow-purple relative">
                   <div className="absolute inset-0 w-full h-full rounded-full bg-[#6c43ff] animate-ping opacity-50"></div>
                 </div>
-                <div className={`${event.color} mb-2`}>{event.title}</div>
-                <div className="text-2xl font-bold">{event.date}</div>
+                <div className={`${event.color} mb-2 text-center`}>{event.title}</div>
+                <div className="text-xl md:text-2xl font-bold text-center">{event.date}</div>
               </div>
             ))}
           </div>
