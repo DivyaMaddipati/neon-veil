@@ -17,21 +17,21 @@ type JudgeProps = {
 const JudgeCard = ({ name, description, image, index, socials }: JudgeProps) => {
   return (
     <div
-      className="bg-[#1A1F2C] rounded-lg overflow-hidden animate-fade-in"
+      className="bg-[#1A1F2C] rounded-lg overflow-hidden animate-fade-in shadow-md"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
     >
-      <div className="h-[200px] flex items-center justify-center overflow-hidden">
+      <div className="h-[180px] flex items-center justify-center overflow-hidden">
         <img 
           src={image} 
           alt={name} 
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-5 text-center">
-        <h3 className="text-xl font-bold text-white mb-3">{name}</h3>
-        <p className="text-gray-400 text-sm mb-5">{description}</p>
+      <div className="p-4 text-center">
+        <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
+        <p className="text-gray-400 text-sm mb-4 line-clamp-3">{description}</p>
         
         <div className="flex justify-center space-x-4">
           {socials.twitter && (
@@ -41,7 +41,7 @@ const JudgeCard = ({ name, description, image, index, socials }: JudgeProps) => 
               rel="noopener noreferrer"
               className="text-hackathon-purple hover:text-white transition-colors"
             >
-              <Twitter size={20} />
+              <Twitter size={18} />
             </a>
           )}
           {socials.facebook && (
@@ -51,7 +51,7 @@ const JudgeCard = ({ name, description, image, index, socials }: JudgeProps) => 
               rel="noopener noreferrer"
               className="text-hackathon-purple hover:text-white transition-colors"
             >
-              <Facebook size={20} />
+              <Facebook size={18} />
             </a>
           )}
           {socials.instagram && (
@@ -61,7 +61,7 @@ const JudgeCard = ({ name, description, image, index, socials }: JudgeProps) => 
               rel="noopener noreferrer"
               className="text-hackathon-purple hover:text-white transition-colors"
             >
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
           )}
         </div>
@@ -106,7 +106,7 @@ const JudgesSection = () => {
 
   return (
     <section id="judges" className="bg-black py-16 md:py-20">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-5xl">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">Judges</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
