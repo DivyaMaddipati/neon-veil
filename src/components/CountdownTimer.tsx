@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -45,40 +44,34 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   return (
-    <div className="flex justify-center items-center">
-      {isMobile ? (
-        // Mobile view - stacked layout
-        <div className="grid grid-cols-2 gap-4 w-full">
-          <TimeUnit value={timeLeft.days} label="DAYS" />
-          <TimeUnit value={timeLeft.hours} label="HOURS" />
-          <TimeUnit value={timeLeft.minutes} label="MINUTES" />
-          <TimeUnit value={timeLeft.seconds} label="SECONDS" />
-        </div>
-      ) : (
-        // Desktop view - horizontal layout
-        <div className="flex items-center justify-center tracking-widest space-x-4">
-          <TimeUnit value={timeLeft.days} label="DAYS" />
-          <span className="text-white text-4xl md:text-6xl">:</span>
-          <TimeUnit value={timeLeft.hours} label="HOURS" />
-          <span className="text-white text-4xl md:text-6xl">:</span>
-          <TimeUnit value={timeLeft.minutes} label="MINUTES" />
-          <span className="text-white text-4xl md:text-6xl">:</span>
-          <TimeUnit value={timeLeft.seconds} label="SECONDS" />
-        </div>
-      )}
+    <div className="flex justify-center items-center w-full max-w-4xl mx-auto">
+      <div className={`${isMobile ? 'grid grid-cols-2 gap-3 w-full' : 'flex items-center justify-center space-x-4'}`}>
+        <TimeUnit value={timeLeft.days} label="DAYS" />
+        {!isMobile && <Separator />}
+        <TimeUnit value={timeLeft.hours} label="HOURS" />
+        {!isMobile && <Separator />}
+        <TimeUnit value={timeLeft.minutes} label="MINUTES" />
+        {!isMobile && <Separator />}
+        <TimeUnit value={timeLeft.seconds} label="SECONDS" />
+      </div>
     </div>
   );
 };
 
-// Extracted time unit component for reusability
 const TimeUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
-    <div className="glass py-2 px-4 rounded-lg border border-[#6c43ff]/30 w-full">
-      <span className="text-glow text-white text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
+    <div className="neo-glass p-2 sm:p-3 md:p-4 rounded-xl border border-[#6c43ff]/20 w-full text-center">
+      <span className="text-glow text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tabular-nums">
         {String(value).padStart(2, '0')}
       </span>
     </div>
-    <span className="text-xs text-gray-400 mt-2 font-medium">{label}</span>
+    <span className="text-[10px] sm:text-xs text-gray-400 mt-2 font-medium tracking-wider">{label}</span>
+  </div>
+);
+
+const Separator = () => (
+  <div className="flex items-center justify-center">
+    <span className="text-white/50 text-2xl md:text-4xl font-light mx-1">:</span>
   </div>
 );
 
