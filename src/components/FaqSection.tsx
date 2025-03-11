@@ -29,8 +29,8 @@ const FaqSection = () => {
 
   const faqs = [
     {
-      question: "Who can participate in HackNova?",
-      answer: "HackNova is open to students, professionals, and anyone passionate about technology and innovation. Whether you're a coding expert or a beginner, you're welcome to join. Participants under 18 will need parental consent."
+      question: "Who can participate in AgentX?",
+      answer: "AgentX is open to students, professionals, and anyone passionate about technology and innovation. Whether you're a coding expert or a beginner, you're welcome to join. Participants under 18 will need parental consent."
     },
     {
       question: "Do I need to have a team to register?",
@@ -75,7 +75,7 @@ const FaqSection = () => {
         
         <div className="max-w-3xl mx-auto text-center mb-16 faq-animate opacity-0">
           <p className="text-xl text-gray-300">
-            Got questions about HackNova? Find your answers here.
+            Got questions about AgentX? Find your answers here.
           </p>
         </div>
         

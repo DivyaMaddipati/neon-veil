@@ -5,12 +5,12 @@ const EventScheduleSection = () => {
   const timelineEvents = [
     {
       title: "Registration Opens",
-      date: "Now",
+      date: "March 14",
       color: "text-[#6c43ff]"
     },
     {
       title: "Registration Closes",
-      date: "April 20",
+      date: "March 26",
       color: "text-[#6c43ff]"
     },
     {
