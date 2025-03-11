@@ -19,6 +19,12 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'audiowide': ['Audiowide', 'cursive'],
+				'space-grotesk': ['Space Grotesk', 'sans-serif'],
+				'roboto': ['Roboto', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
