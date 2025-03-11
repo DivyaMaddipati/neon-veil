@@ -33,11 +33,12 @@ const RegistrationSteps = ({ currentStep }: RegistrationStepsProps) => {
               )}
             </div>
             
+            {/* Connecting lines between steps */}
             {index < steps.length - 1 && (
-              <div className="absolute top-6 left-12 w-[calc(100%-2rem)] h-0.5 -translate-y-1/2 transform">
+              <div className="absolute top-6 -translate-y-1/2 w-full h-0.5" style={{ left: '50%' }}>
                 <div 
-                  className={`h-full transition-all duration-300 ${
-                    currentStep > index + 1 ? 'bg-hackathon-purple' : 'bg-gray-500'
+                  className={`h-full ${
+                    currentStep > step.number ? 'bg-hackathon-purple' : 'bg-gray-500'
                   }`}
                 ></div>
               </div>

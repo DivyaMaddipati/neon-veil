@@ -95,6 +95,20 @@
     @apply text-white;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(108, 67, 255, 0.6), 0 0 30px rgba(108, 67, 255, 0.4);
   }
+  
+  /* Animation for the registration step indicators */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(108, 67, 255, 0.6), 0 0 20px rgba(108, 67, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(108, 67, 255, 0.8), 0 0 30px rgba(108, 67, 255, 0.6);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite ease-in-out;
+  }
 }
 
 @layer utilities {
