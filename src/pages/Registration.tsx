@@ -1,0 +1,127 @@
+
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import RegistrationSteps from '@/components/RegistrationSteps';
+import PersonalInfoForm from '@/components/registration/PersonalInfoForm';
+import TeamDetailsForm from '@/components/registration/TeamDetailsForm';
+import MemberDetailsForm from '@/components/registration/MemberDetailsForm';
+import { toast } from 'sonner';
+
+export type RegistrationData = {
+  // Personal Info
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  
+  // Team Details
+  teamName: string;
+  collegeName: string;
+  numberOfMembers: number;
+  teamLeaderName: string;
+  teamLeaderEmail: string;
+  
+  // Member Details
+  member1Name: string;
+  member1Email: string;
+  member2Name: string;
+  member2Email: string;
+  problemStatement: string;
+  termsAccepted: boolean;
+};
+
+const Registration = () => {
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState<RegistrationData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    teamName: '',
+    collegeName: '',
+    numberOfMembers: 2,
+    teamLeaderName: '',
+    teamLeaderEmail: '',
+    member1Name: '',
+    member1Email: '',
+    member2Name: '',
+    member2Email: '',
+    problemStatement: '',
+    termsAccepted: false
+  });
+
+  const updateFormData = (data: Partial<RegistrationData>) => {
+    setFormData(prev => ({ ...prev, ...data }));
+  };
+
+  const handleNext = () => {
+    if (currentStep < 3) {
+      setCurrentStep(prev => prev + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentStep > 1) {
+      setCurrentStep(prev => prev - 1);
+      window.scrollTo(0, 0);
+    } else {
+      navigate('/');
+    }
+  };
+
+  const handleSubmit = () => {
+    // Here you would typically send the data to your server
+    console.log('Form submitted:', formData);
+    toast.success('Registration successful! We will be in touch soon.');
+    navigate('/');
+  };
+
+  return (
+    <div className="min-h-screen bg-black">
+      <Navbar />
+      <main className="pt-28 pb-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">Registration Form</h1>
+          
+          <RegistrationSteps currentStep={currentStep} />
+          
+          <div className="mt-12 bg-[#1A1F2C] rounded-xl p-8 shadow-lg border border-hackathon-purple/20">
+            {currentStep === 1 && (
+              <PersonalInfoForm 
+                formData={formData} 
+                updateFormData={updateFormData} 
+                onNext={handleNext}
+                onPrevious={handlePrevious}
+              />
+            )}
+            
+            {currentStep === 2 && (
+              <TeamDetailsForm 
+                formData={formData} 
+                updateFormData={updateFormData} 
+                onNext={handleNext}
+                onPrevious={handlePrevious}
+              />
+            )}
+            
+            {currentStep === 3 && (
+              <MemberDetailsForm 
+                formData={formData} 
+                updateFormData={updateFormData}
+                onSubmit={handleSubmit}
+                onPrevious={handlePrevious}
+              />
+            )}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Registration;

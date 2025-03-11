@@ -1,4 +1,6 @@
+
 import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -9,6 +11,7 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +66,7 @@ const Navbar = () => {
       href: "#schedule", 
       hasDropdown: true,
       dropdownItems: [
-        { name: "Registration", href: "#registration" },
+        { name: "Registration", href: "/registration", isFullPath: true },
         { name: "Sponsors", href: "#sponsors" },
       ]
     },
@@ -81,6 +84,8 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
+  const isHomePage = location.pathname === '/';
+
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -89,9 +94,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold">
+          <Link to="/" className="text-2xl font-bold">
             AgentX
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
@@ -119,14 +124,25 @@ const Navbar = () => {
                     <div className="glass bg-[#1A1F2C]/95 backdrop-blur-lg border border-purple-500/20 shadow-[0_5px_30px_rgba(108,67,255,0.25)] overflow-hidden p-1 rounded-xl">
                       <div className="py-1">
                         {link.dropdownItems?.map((item, idx) => (
-                          <a
-                            key={idx}
-                            href={item.href}
-                            className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg transition-colors duration-200 mx-1 text-sm font-medium"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {item.name}
-                          </a>
+                          item.isFullPath ? (
+                            <Link
+                              key={idx}
+                              to={item.href}
+                              className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg transition-colors duration-200 mx-1 text-sm font-medium"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : (
+                            <a
+                              key={idx}
+                              href={isHomePage ? item.href : `/${item.href}`}
+                              className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg transition-colors duration-200 mx-1 text-sm font-medium"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {item.name}
+                            </a>
+                          )
                         ))}
                       </div>
                     </div>
@@ -137,9 +153,11 @@ const Navbar = () => {
           </nav>
 
           <div className="hidden md:block">
-            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
-              Login
-            </Button>
+            <Link to="/registration">
+              <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
+                Register
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -185,23 +203,36 @@ const Navbar = () => {
                     >
                       <div className="px-2 py-1">
                         {link.dropdownItems?.map((item, idx) => (
-                          <a
-                            key={idx}
-                            href={item.href}
-                            className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg text-sm my-1"
-                            onClick={closeMenu}
-                          >
-                            {item.name}
-                          </a>
+                          item.isFullPath ? (
+                            <Link
+                              key={idx}
+                              to={item.href}
+                              className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg text-sm my-1"
+                              onClick={closeMenu}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : (
+                            <a
+                              key={idx}
+                              href={isHomePage ? item.href : `/${item.href}`}
+                              className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg text-sm my-1"
+                              onClick={closeMenu}
+                            >
+                              {item.name}
+                            </a>
+                          )
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
               ))}
-              <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4 py-6">
-                Login
-              </Button>
+              <Link to="/registration" onClick={closeMenu}>
+                <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4 py-6">
+                  Register
+                </Button>
+              </Link>
             </nav>
           </div>
         </div>
