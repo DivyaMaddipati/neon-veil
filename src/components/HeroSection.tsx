@@ -59,8 +59,8 @@ const HeroSection = () => {
         
         <div className="mt-10 md:mt-16 w-full max-w-4xl">
           <div className="bg-[#2a1a4a]/80 backdrop-blur-md border border-[#6c43ff]/20 rounded-xl p-4 sm:p-6 md:p-8 shadow-[0_0_15px_rgba(108,67,255,0.2)]">
-            <p className="text-center text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-white/90">26 - 04 - 2024 &nbsp; Sat</p>
-            <CountdownTimer targetDate="2024-04-26T00:00:00" />
+            <p className="text-center text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-white/90">Registration Opens: 14 - 03 - 2025</p>
+            <CountdownTimer targetDate="2025-03-14T00:00:00" />
           </div>
         </div>
       </div>
