@@ -35,10 +35,10 @@ const RegistrationSteps = ({ currentStep }: RegistrationStepsProps) => {
             
             {index < steps.length - 1 && (
               <div className="absolute top-6 left-12 w-[calc(100%-2rem)] h-0.5 -translate-y-1/2 transform">
-                <div className="h-full bg-gray-500"></div>
                 <div 
-                  className="absolute top-0 left-0 h-full bg-hackathon-purple transition-all duration-300"
-                  style={{ width: currentStep > step.number ? '100%' : '0%' }}
+                  className={`h-full transition-all duration-300 ${
+                    currentStep > index + 1 ? 'bg-hackathon-purple' : 'bg-gray-500'
+                  }`}
                 ></div>
               </div>
             )}
