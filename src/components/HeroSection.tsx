@@ -3,9 +3,11 @@ import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const navigate = useNavigate();
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,8 +28,8 @@ const HeroSection = () => {
     return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
 
-  const scrollToRegister = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  const navigateToRegistration = () => {
+    navigate('/registration');
   };
 
   return (
@@ -47,7 +49,7 @@ const HeroSection = () => {
         </p>
         
         <button 
-          onClick={scrollToRegister} 
+          onClick={navigateToRegistration} 
           className="hero-animate opacity-0 bg-gradient-to-r from-[#6c43ff] to-[#8d6aff] text-white font-medium py-3 px-8 md:px-10 rounded-full text-lg md:text-xl mb-12 md:mb-20 relative overflow-hidden group mt-6 md:mt-8 hover:shadow-[0_0_15px_rgba(108,67,255,0.8)]"
         >
           <span className="relative z-10 flex items-center">
