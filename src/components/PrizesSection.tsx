@@ -10,19 +10,12 @@ const PrizesSection = () => {
           <p className="text-gray-400">Rewards That Recognize Excellence</p>
         </div>
 
-        <div className="flex flex-col items-center mb-12">
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-6 rounded-lg max-w-3xl mx-auto text-center w-full mb-8">
-            <h3 className="text-2xl font-bold mb-3">Theme</h3>
-            <p className="text-xl">AI for Good: Empowering Social Impact</p>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {/* First Prize */}
           <div className="bg-[#252215] rounded-lg p-6 md:p-8 flex items-center justify-between relative overflow-hidden">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">Grand Prize</h3>
-              <div className="text-3xl md:text-4xl font-bold text-purple-400">1,00,000 INR</div>
+              <h3 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">1st Prize</h3>
+              <div className="text-3xl md:text-4xl font-bold text-yellow-400">1,00,000 /-</div>
             </div>
             <div className="relative">
               <img 
@@ -36,8 +29,8 @@ const PrizesSection = () => {
           {/* Second Prize */}
           <div className="bg-[#1a1a1a] rounded-lg p-6 md:p-8 flex items-center justify-between relative overflow-hidden">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">Runner Up</h3>
-              <div className="text-3xl md:text-4xl font-bold text-blue-400">60,000 INR</div>
+              <h3 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">2nd Prize</h3>
+              <div className="text-3xl md:text-4xl font-bold text-yellow-400">60,000 /-</div>
             </div>
             <div className="relative">
               <img 
