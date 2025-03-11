@@ -41,14 +41,14 @@ const SponsorsSection = () => {
               className="bg-[#1A1F2C] rounded-lg overflow-hidden shadow-md border border-gray-800 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)]"
             >
               <div className="p-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex-1">
+                <div className="flex-1 flex items-center gap-4">
                   <img 
                     src={sponsor.logo} 
                     alt={`${sponsor.name} logo`} 
-                    className="max-w-full h-auto max-h-16"
+                    className="max-w-[150px] h-auto max-h-16"
                   />
                   {sponsor.description && (
-                    <p className="text-gray-400 text-xs mt-2">{sponsor.description}</p>
+                    <p className="text-gray-400 text-sm">{sponsor.description}</p>
                   )}
                 </div>
                 <Button 
