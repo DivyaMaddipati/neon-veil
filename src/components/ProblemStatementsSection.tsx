@@ -18,19 +18,19 @@ const ProblemCard = ({ title, description, icon, index }: {
 }) => {
   return (
     <div 
-      className="bg-[#1A1F2C] p-3 rounded-lg border border-gray-700 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
+      className="bg-[#1A1F2C] rounded-lg overflow-hidden shadow-md animate-fade-in h-full"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
     >
-      <div className="flex flex-col h-full">
-        <div className="mb-2">
+      <div className="p-5 text-center">
+        <div className="flex justify-center mb-3">
           {icon}
         </div>
-        <h3 className="text-base md:text-lg font-bold text-[#9b87f5] mb-1.5">
+        <h3 className="text-base md:text-lg font-bold text-[#9b87f5] mb-2">
           {title}
         </h3>
-        <p className="text-gray-400 text-xs">
+        <p className="text-gray-400 text-xs line-clamp-3">
           {description}
         </p>
       </div>
@@ -96,7 +96,7 @@ const ProblemStatementsSection = () => {
           to apply their skills to real-world problems.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {problemStatements.map((problem, index) => (
             <ProblemCard 
               key={index}
