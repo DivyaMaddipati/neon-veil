@@ -43,7 +43,7 @@ const HeroSection = () => {
           <span className="text-glow gradient-text-purple">AgentX</span>
         </h1>
         <p className="hero-animate opacity-0 text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 tracking-widest">
-          Code &nbsp; Create &nbsp; Disrupt
+          Build &nbsp; Automate &nbsp; Disrupt
         </p>
         
         <button 
