@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Calendar, Clock, Flag, Trophy } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const EventScheduleSection = () => {
+  const isMobile = useIsMobile();
+  
   const timelineEvents = [
     {
       title: "Registration Opens",
@@ -46,52 +49,54 @@ const EventScheduleSection = () => {
         </div>
 
         {/* Mobile view (stacked vertical timeline) */}
-        <div className="md:hidden max-w-xs mx-auto space-y-8 relative">
-          <div className="absolute left-4 top-8 bottom-8 w-1 bg-gradient-to-b from-[#6c43ff]/20 via-[#6c43ff] to-[#6c43ff]/20 rounded-full"></div>
-          
-          {timelineEvents.map((event, index) => (
-            <div key={index} className="flex items-start space-x-6">
-              <div className="relative mt-2">
-                <div className={`${event.color} w-8 h-8 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(108,67,255,0.6)] relative`}>
-                  <div className="text-white">{event.icon}</div>
-                  <div className="absolute inset-0 w-full h-full rounded-full bg-[#6c43ff] animate-pulse-glow opacity-60"></div>
-                </div>
-              </div>
-              
-              <div className="glass p-4 rounded-lg flex-1 transform hover:translate-x-1 transition-transform duration-300 border-l-2 border-[#6c43ff]">
-                <h3 className="font-bold text-lg text-white">{event.title}</h3>
-                <p className="text-[#a090e9] text-sm">{event.date}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop view (horizontal timeline) */}
-        <div className="hidden md:block max-w-5xl mx-auto relative">
-          {/* Timeline line */}
-          <div className="absolute top-[42px] left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff]/20 via-[#6c43ff] to-[#6c43ff]/20 rounded-full"></div>
-          
-          {/* Timeline events */}
-          <div className="grid grid-cols-4 gap-6 lg:gap-8">
+        {isMobile ? (
+          <div className="mx-auto space-y-6 relative px-2">
+            <div className="absolute left-4 top-4 bottom-4 w-1 bg-gradient-to-b from-[#6c43ff]/20 via-[#6c43ff] to-[#6c43ff]/20 rounded-full"></div>
+            
             {timelineEvents.map((event, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="relative mb-8">
-                  {/* Glowing dot */}
-                  <div className={`${event.color} w-8 h-8 rounded-full flex items-center justify-center z-10 shadow-[0_0_15px_rgba(108,67,255,0.6)] relative`}>
+              <div key={index} className="flex items-start space-x-4">
+                <div className="relative mt-2 z-10">
+                  <div className={`${event.color} w-8 h-8 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(108,67,255,0.6)] relative`}>
                     <div className="text-white">{event.icon}</div>
                     <div className="absolute inset-0 w-full h-full rounded-full bg-[#6c43ff] animate-pulse-glow opacity-60"></div>
                   </div>
                 </div>
                 
-                {/* Card content */}
-                <div className="glass p-4 rounded-lg w-full h-full text-center transform hover:scale-105 transition-all duration-300 border-t-2 border-[#6c43ff] hover:shadow-[0_8px_20px_rgba(108,67,255,0.2)]">
-                  <h3 className="font-bold text-xl mb-2 text-white">{event.title}</h3>
-                  <p className="text-[#a090e9]">{event.date}</p>
+                <div className="glass p-4 rounded-lg flex-1 transform transition-all duration-300 border-l-2 border-[#6c43ff] hover:border-l-4 hover:shadow-[0_0_15px_rgba(108,67,255,0.3)]">
+                  <h3 className="font-bold text-lg text-white">{event.title}</h3>
+                  <p className="text-[#a090e9] text-sm">{event.date}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        ) : (
+          /* Desktop view (horizontal timeline) */
+          <div className="hidden md:block max-w-5xl mx-auto relative">
+            {/* Timeline line */}
+            <div className="absolute top-[42px] left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff]/20 via-[#6c43ff] to-[#6c43ff]/20 rounded-full"></div>
+            
+            {/* Timeline events */}
+            <div className="grid grid-cols-4 gap-6 lg:gap-8">
+              {timelineEvents.map((event, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <div className="relative mb-8">
+                    {/* Glowing dot */}
+                    <div className={`${event.color} w-8 h-8 rounded-full flex items-center justify-center z-10 shadow-[0_0_15px_rgba(108,67,255,0.6)] relative`}>
+                      <div className="text-white">{event.icon}</div>
+                      <div className="absolute inset-0 w-full h-full rounded-full bg-[#6c43ff] animate-pulse-glow opacity-60"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Card content */}
+                  <div className="glass p-4 rounded-lg w-full h-full text-center transform hover:scale-105 transition-all duration-300 border-t-2 border-[#6c43ff] hover:shadow-[0_8px_20px_rgba(108,67,255,0.2)]">
+                    <h3 className="font-bold text-xl mb-2 text-white">{event.title}</h3>
+                    <p className="text-[#a090e9]">{event.date}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         
         {/* Call to action */}
         <div className="mt-12 md:mt-16 text-center">
