@@ -8,6 +8,7 @@ import FaqSection from '@/components/FaqSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import ProblemStatementsSection from '@/components/ProblemStatementsSection';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <WhyParticipateSection />
         <PrizesSection />
         <EventScheduleSection />
+        <ProblemStatementsSection />
         <FaqSection />
         <ContactSection />
       </main>
