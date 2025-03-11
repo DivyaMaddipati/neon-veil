@@ -45,7 +45,7 @@ const SponsorsSection = () => {
               <div className="p-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex-1">
                   <div className="flex items-center gap-4">
-                    <div className="bg-gradient-to-br from-hackathon-purple/20 to-hackathon-orange/20 p-3 rounded-lg shadow-lg">
+                    <div>
                       <img 
                         src={sponsor.logo} 
                         alt={`${sponsor.name} logo`} 
