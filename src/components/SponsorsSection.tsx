@@ -15,7 +15,7 @@ const SponsorsSection = () => {
     {
       name: "CognitBotz",
       description: "YOUR AI AUTOMATION PARTNER",
-      logo: "https://placehold.co/300x100/1A1F2C/0088cc/png?text=CognitBotz",
+      logo: "/faviconone.ico",
       url: "https://example.com/cognitbotz"
     },
     {
