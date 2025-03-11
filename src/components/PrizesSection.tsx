@@ -19,7 +19,7 @@ const PrizesSection = () => {
             </div>
             <div className="relative">
               <img 
-                src="/public/lovable-uploads/gold.png" 
+                src="/lovable-uploads/gold.png" 
                 alt="Gold Medal" 
                 className="w-16 h-16 md:w-20 md:h-20 object-contain"
               />
@@ -34,7 +34,7 @@ const PrizesSection = () => {
             </div>
             <div className="relative">
               <img 
-                src="/public/lovable-uploads/silver.png" 
+                src="/lovable-uploads/silver.png" 
                 alt="Silver Medal" 
                 className="w-16 h-16 md:w-20 md:h-20 object-contain"
               />
