@@ -1,6 +1,14 @@
 
 import React from 'react';
-import { Lightbulb, Brain, AlertTriangle } from 'lucide-react';
+import { 
+  Lightbulb, 
+  Brain, 
+  AlertTriangle, 
+  Bot, 
+  TrafficCone, 
+  Newspaper, 
+  Server 
+} from 'lucide-react';
 
 const ProblemCard = ({ title, description, icon, index }: { 
   title: string; 
@@ -10,17 +18,17 @@ const ProblemCard = ({ title, description, icon, index }: {
 }) => {
   return (
     <div 
-      className="bg-[#1A1F2C] p-8 rounded-lg border border-gray-700 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full"
+      className="bg-[#1A1F2C] p-6 rounded-lg border border-gray-700 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
     >
       <div className="flex flex-col h-full">
         {icon}
-        <h3 className="text-2xl md:text-3xl font-bold text-hackathon-purple mb-4">
+        <h3 className="text-xl md:text-2xl font-bold text-[#9b87f5] mb-3">
           {title}
         </h3>
-        <p className="text-gray-400 text-lg">
+        <p className="text-gray-400 text-base">
           {description}
         </p>
       </div>
@@ -33,17 +41,47 @@ const ProblemStatementsSection = () => {
     {
       title: "Smart Waste Management System",
       description: "Develop an AI-based solution to detect and categorize waste, optimize garbage collection, and promote recycling.",
-      icon: <Lightbulb className="h-12 w-12 text-hackathon-purple mb-4" />
+      icon: <Lightbulb className="h-10 w-10 text-hackathon-purple mb-3" />
     },
     {
       title: "AI-Powered Career Guidance",
       description: "Build a platform that suggests career paths based on skills, interests, and job trends.",
-      icon: <Brain className="h-12 w-12 text-hackathon-purple mb-4" />
+      icon: <Brain className="h-10 w-10 text-hackathon-purple mb-3" />
     },
     {
       title: "Real-Time Disaster Alert System",
       description: "Build an AI and IoT-powered system to detect disasters and send real-time alerts to affected areas.",
-      icon: <AlertTriangle className="h-12 w-12 text-hackathon-purple mb-4" />
+      icon: <AlertTriangle className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "Automated Mental Health Support",
+      description: "Design a chatbot or app that provides mental health support, relaxation techniques, and expert guidance.",
+      icon: <Bot className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "AI-Based Resume Screener for Recruiters",
+      description: "Develop an AI tool that scans resumes, matches candidates with job roles, and ranks applicants efficiently.",
+      icon: <Brain className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "Decentralized Data Storage System",
+      description: "Develop a blockchain-based secure storage solution for privacy-focused, decentralized data management.",
+      icon: <Server className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "Voice Assistant for the Visually Impaired",
+      description: "Build an AI-powered assistant to help visually impaired users with navigation, reading, and daily tasks.",
+      icon: <Bot className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "Smart Traffic Management System",
+      description: "Use AI and IoT to optimize traffic signals, reduce congestion, and provide real-time traffic updates.",
+      icon: <TrafficCone className="h-10 w-10 text-hackathon-purple mb-3" />
+    },
+    {
+      title: "AI-Powered Fake News Detector",
+      description: "Create an AI tool that verifies news, detects misinformation, and provides credibility scores.",
+      icon: <Newspaper className="h-10 w-10 text-hackathon-purple mb-3" />
     }
   ];
 
@@ -56,7 +94,7 @@ const ProblemStatementsSection = () => {
           to apply their skills to real-world problems.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {problemStatements.map((problem, index) => (
             <ProblemCard 
               key={index}
