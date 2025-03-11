@@ -38,14 +38,14 @@ const Navbar = () => {
         isScrolled ? 'bg-black/80 backdrop-blur-md py-2 shadow-lg' : 'bg-black py-4'
       }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <a href="#" className="text-2xl font-bold">
             AgentX
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-10">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
             {navLinks.map((link, index) => (
               <a 
                 key={index}
@@ -59,14 +59,14 @@ const Navbar = () => {
           </nav>
 
           <div className="hidden md:block">
-            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-10 font-normal">
+            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
               Login
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-white"
+            className="md:hidden text-white p-2"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -96,7 +96,7 @@ const Navbar = () => {
                   {link.hasDropdown && <ChevronDown size={16} />}
                 </a>
               ))}
-              <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4">
+              <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4 py-6">
                 Login
               </Button>
             </nav>
