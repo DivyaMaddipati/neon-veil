@@ -106,15 +106,6 @@ const FaqSection = () => {
             </div>
           ))}
         </div>
-        
-        <div className="mt-12 text-center faq-animate opacity-0">
-          <p className="text-lg mb-4">
-            Still have questions? Contact our support team.
-          </p>
-          <a href="mailto:support@hacknova.tech" className="text-hackathon-cyan hover:underline">
-            support@hacknova.tech
-          </a>
-        </div>
       </div>
     </section>
   );
