@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -178,7 +179,7 @@ const ContactSection = () => {
               <div className="flex justify-center pt-6">
                 <Button 
                   type="submit" 
-                  className="bg-[#8E72F1] hover:bg-[#9F85F2] text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 min-w-[200px]"
+                  className="bg-[#6c43ff] hover:bg-[#7E59DD] text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 min-w-[200px]"
                 >
                   <Send className="h-5 w-5" />
                   <span>Send Message</span>
