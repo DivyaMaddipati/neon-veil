@@ -1,5 +1,5 @@
 
-import { Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,8 +15,8 @@ const Footer = () => {
           </div>
           
           <div className="flex space-x-6 mb-6 md:mb-0">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter size={20} />
+            <a href="https://www.facebook.com/people/Cognitbotz-solutions/100070451876131/" className="text-gray-400 hover:text-white transition-colors">
+              <Facebook size={20} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               <Instagram size={20} />
@@ -24,14 +24,14 @@ const Footer = () => {
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               <Github size={20} />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a href="https://www.linkedin.com/company/cognitbots/posts/?feedView=all" className="text-gray-400 hover:text-white transition-colors">
               <Linkedin size={20} />
             </a>
           </div>
           
           <div>
             <p className="text-gray-400">
-              &copy; 2024 AgentX. All rights reserved.
+              &copy; 2025 AgentX. All rights reserved.
             </p>
           </div>
         </div>

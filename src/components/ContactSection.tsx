@@ -41,20 +41,22 @@ const ContactSection = () => {
               <div>
                 <h3 className="text-xl font-bold mb-3">Address</h3>
                 <address className="text-gray-400 not-italic">
-                  1234 Elm Street<br />
-                  Springfield, XY 56789<br />
-                  United States
+                Lumbini Avenue<br />
+                  Gachibowli, Hyderabad<br />
+                  Telangana, India
                 </address>
               </div>
               
               <div>
                 <h3 className="text-xl font-bold mb-3">Phone</h3>
-                <p className="text-gray-400">+91 XXXXXXXXX</p>
+                <p className="text-gray-400">INDIA: +91 93465 75094</p>
+                <p className="text-gray-400">MALAYSIA: +60 11 5305 6719</p>
+                <p className="text-gray-400">USA/CANADA: +1 (945) 267-3482</p>
               </div>
               
               <div>
                 <h3 className="text-xl font-bold mb-3">Email</h3>
-                <p className="text-gray-400">agentX@gmail.com</p>
+                <p className="text-gray-400">Hello@CognitBotz.com</p>
               </div>
             </div>
           </div>
