@@ -18,7 +18,7 @@ const ProblemCard = ({ title, description, icon, index }: {
 }) => {
   return (
     <div 
-      className="bg-[#1A1F2C] rounded-lg overflow-hidden shadow-md animate-fade-in h-full"
+      className="bg-[#1A1F2C] rounded-lg overflow-hidden shadow-md border border-gray-800 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}

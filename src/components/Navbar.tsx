@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
@@ -47,6 +46,7 @@ const Navbar = () => {
         { name: "Schedule", href: "#schedule" },
         { name: "Problem Statements", href: "#problem-statements" },
         { name: "Judges", href: "#judges" },
+        { name: "Sponsors", href: "#sponsors" },
       ]
     },
     { 
