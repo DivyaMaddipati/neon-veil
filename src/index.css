@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Montserrat:wght@300;400;500;600;700&family=Audiowide&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,7 +49,6 @@
     background-image: 
       radial-gradient(circle at 20% 25%, rgba(108, 67, 255, 0.1) 0%, transparent 45%),
       radial-gradient(circle at 80% 75%, rgba(255, 107, 0, 0.1) 0%, transparent 45%);
-    background: linear-gradient(to bottom, #0A0A0A, #120f1e);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -84,7 +84,7 @@
   }
   
   .gradient-text-purple {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-white to-[#c084fc];
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-[#6c43ff] to-[#aa99ff];
   }
   
   .gradient-text-orange {
@@ -92,35 +92,8 @@
   }
   
   .text-glow {
-    text-shadow: 0px 0px 20px rgba(192, 132, 252, 0.8);
-  }
-
-  .agentx-title {
-    font-family: 'Audiowide', cursive;
-    letter-spacing: 0.01em;
-  }
-
-  .subtext {
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: 0.2em;
-  }
-
-  .register-button {
-    background: linear-gradient(90deg, #9a6aff, #6b46c1);
-    border-radius: 30px;
-    animation: pulse 3s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(154, 106, 255, 0.6);
-    }
-    70% {
-      box-shadow: 0 0 0 10px rgba(154, 106, 255, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(154, 106, 255, 0);
-    }
+    @apply text-white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(108, 67, 255, 0.6), 0 0 30px rgba(108, 67, 255, 0.4);
   }
 }
 

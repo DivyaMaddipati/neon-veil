@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
@@ -38,21 +39,22 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto relative z-10 flex flex-col items-center text-center">
-        <h1 className="hero-animate opacity-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-4 tracking-wider agentx-title">
+        <h1 className="hero-animate opacity-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-4 tracking-wider font-roboto">
           <span className="text-glow gradient-text-purple">AgentX</span>
         </h1>
-        <p className="hero-animate opacity-0 text-base sm:text-lg text-gray-300 mb-8 md:mb-10 subtext">
+        <p className="hero-animate opacity-0 text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 tracking-widest">
           Code &nbsp; Create &nbsp; Disrupt
         </p>
         
         <button 
           onClick={scrollToRegister} 
-          className="hero-animate opacity-0 text-white font-medium py-3 px-8 md:px-10 text-lg md:text-xl mb-12 md:mb-20 relative overflow-hidden group mt-6 md:mt-8 register-button"
+          className="hero-animate opacity-0 bg-gradient-to-r from-[#6c43ff] to-[#8d6aff] text-white font-medium py-3 px-8 md:px-10 rounded-full text-lg md:text-xl mb-12 md:mb-20 relative overflow-hidden group mt-6 md:mt-8 hover:shadow-[0_0_15px_rgba(108,67,255,0.8)]"
         >
           <span className="relative z-10 flex items-center">
             Register Now
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </span>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#8d6aff] to-[#6c43ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
         
         <div className="mt-10 md:mt-16 w-full max-w-4xl">
