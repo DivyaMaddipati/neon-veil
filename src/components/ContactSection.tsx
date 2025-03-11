@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -84,7 +85,7 @@ const ContactSection = () => {
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus:border-[#8E72F1] focus:ring-0 transition-colors"
+                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:outline-none focus-visible:border-[#8E72F1] transition-colors"
                   aria-invalid={!!errors.name}
                 />
                 {errors.name && <p className="absolute text-xs text-red-500 mt-1">{errors.name}</p>}
@@ -97,7 +98,7 @@ const ContactSection = () => {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus:border-[#8E72F1] focus:ring-0 transition-colors"
+                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:outline-none focus-visible:border-[#8E72F1] transition-colors"
                   aria-invalid={!!errors.email}
                 />
                 {errors.email && <p className="absolute text-xs text-red-500 mt-1">{errors.email}</p>}
@@ -110,7 +111,7 @@ const ContactSection = () => {
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus:border-[#8E72F1] focus:ring-0 transition-colors"
+                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:outline-none focus-visible:border-[#8E72F1] transition-colors"
                 />
               </div>
 
@@ -120,7 +121,7 @@ const ContactSection = () => {
                   placeholder="Message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus:border-[#8E72F1] focus:ring-0 transition-colors resize-none min-h-[80px]"
+                  className="w-full bg-transparent border-0 border-b border-white/40 rounded-none px-0 py-2 text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:outline-none focus-visible:border-[#8E72F1] transition-colors resize-none min-h-[80px]"
                   aria-invalid={!!errors.message}
                 />
                 {errors.message && <p className="absolute text-xs text-red-500 mt-1">{errors.message}</p>}
