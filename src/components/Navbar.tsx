@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -84,6 +83,21 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    closeMenu();
+    setActiveDropdown(null);
+    
+    if (location.pathname !== '/') {
+      window.location.href = `/${sectionId}`;
+      return;
+    }
+    
+    const element = document.getElementById(sectionId.replace('#', ''));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const isHomePage = location.pathname === '/';
 
   return (
@@ -102,17 +116,29 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
             {navLinks.map((link, index) => (
               <div key={index} className="relative group">
-                <button 
-                  onClick={() => link.hasDropdown && toggleDropdown(link.name)}
-                  className="text-white flex items-center group-hover:text-hackathon-purple transition-colors duration-200"
-                >
-                  {link.name}
-                  {link.hasDropdown && (
-                    activeDropdown === link.name ? 
-                    <ChevronUp className="ml-1" size={16} /> : 
-                    <ChevronDown className="ml-1" size={16} />
-                  )}
-                </button>
+                {link.hasDropdown ? (
+                  <button 
+                    onClick={() => toggleDropdown(link.name)}
+                    className="text-white flex items-center group-hover:text-hackathon-purple transition-colors duration-200"
+                  >
+                    {link.name}
+                    {activeDropdown === link.name ? 
+                      <ChevronUp className="ml-1" size={16} /> : 
+                      <ChevronDown className="ml-1" size={16} />
+                    }
+                  </button>
+                ) : (
+                  <a
+                    href={isHomePage ? link.href : `/${link.href}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(link.href);
+                    }}
+                    className="text-white group-hover:text-hackathon-purple transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                )}
                 
                 {link.hasDropdown && (
                   <div 
@@ -137,8 +163,11 @@ const Navbar = () => {
                             <a
                               key={idx}
                               href={isHomePage ? item.href : `/${item.href}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection(item.href);
+                              }}
                               className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg transition-colors duration-200 mx-1 text-sm font-medium"
-                              onClick={() => setActiveDropdown(null)}
                             >
                               {item.name}
                             </a>
@@ -183,17 +212,29 @@ const Navbar = () => {
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link, index) => (
                 <div key={index}>
-                  <button 
-                    className="text-xl text-white flex items-center justify-between w-full py-3 border-b border-white/10"
-                    onClick={() => link.hasDropdown ? toggleDropdown(link.name) : (closeMenu())}
-                  >
-                    <span className={activeDropdown === link.name ? "text-hackathon-purple" : ""}>{link.name}</span>
-                    {link.hasDropdown && (
-                      activeDropdown === link.name ? 
-                      <ChevronUp size={20} className="text-hackathon-purple" /> : 
-                      <ChevronDown size={20} />
-                    )}
-                  </button>
+                  {link.hasDropdown ? (
+                    <button 
+                      className="text-xl text-white flex items-center justify-between w-full py-3 border-b border-white/10"
+                      onClick={() => toggleDropdown(link.name)}
+                    >
+                      <span className={activeDropdown === link.name ? "text-hackathon-purple" : ""}>{link.name}</span>
+                      {activeDropdown === link.name ? 
+                        <ChevronUp size={20} className="text-hackathon-purple" /> : 
+                        <ChevronDown size={20} />
+                      }
+                    </button>
+                  ) : (
+                    <a
+                      href={isHomePage ? link.href : `/${link.href}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.href);
+                      }}
+                      className="text-xl text-white flex items-center justify-between w-full py-3 border-b border-white/10"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                   
                   {link.hasDropdown && (
                     <div 
@@ -216,8 +257,11 @@ const Navbar = () => {
                             <a
                               key={idx}
                               href={isHomePage ? item.href : `/${item.href}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection(item.href);
+                              }}
                               className="block px-4 py-3 text-hackathon-purple hover:bg-purple-900/20 rounded-lg text-sm my-1"
-                              onClick={closeMenu}
                             >
                               {item.name}
                             </a>
