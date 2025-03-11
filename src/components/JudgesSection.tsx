@@ -75,7 +75,7 @@ const JudgesSection = () => {
     {
       name: "Judge 1",
       description: "Lorem ipsum dolor sit amet, dictus eruditi probatus no mei, no laoreet apeirian suscipiatur eos. Fugit intellegat at usu, at est deleint interesset.",
-      image: "/lovable-uploads/9d138fa4-70e9-46ad-a697-4f2a891ac530.png",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop",
       socials: {
         twitter: "https://twitter.com",
         facebook: "https://facebook.com",
@@ -85,7 +85,7 @@ const JudgesSection = () => {
     {
       name: "Judge 2",
       description: "Lorem ipsum dolor sit amet, dictus eruditi probatus no mei, no laoreet apeirian suscipiatur eos. Fugit intellegat at usu, at est deleint interesset.",
-      image: "/lovable-uploads/9d138fa4-70e9-46ad-a697-4f2a891ac530.png",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop",
       socials: {
         twitter: "https://twitter.com",
         facebook: "https://facebook.com",
@@ -95,7 +95,7 @@ const JudgesSection = () => {
     {
       name: "Judge 3",
       description: "Lorem ipsum dolor sit amet, dictus eruditi probatus no mei, no laoreet apeirian suscipiatur eos. Fugit intellegat at usu, at est deleint interesset.",
-      image: "/lovable-uploads/9d138fa4-70e9-46ad-a697-4f2a891ac530.png",
+      image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=2787&auto=format&fit=crop",
       socials: {
         twitter: "https://twitter.com",
         facebook: "https://facebook.com",
