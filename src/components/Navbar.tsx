@@ -153,9 +153,9 @@ const Navbar = () => {
           </nav>
 
           <div className="hidden md:block">
-            <Link to="/registration">
+            <Link to="/#">
               <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
-                Register
+                Login
               </Button>
             </Link>
           </div>
