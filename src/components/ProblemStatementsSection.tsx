@@ -18,17 +18,17 @@ const ProblemCard = ({ title, description, icon, index }: {
 }) => {
   return (
     <div 
-      className="bg-[#1A1F2C] p-6 rounded-lg border border-gray-700 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
+      className="bg-[#1A1F2C] p-4 rounded-lg border border-gray-700 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
     >
       <div className="flex flex-col h-full">
         {icon}
-        <h3 className="text-xl md:text-2xl font-bold text-[#9b87f5] mb-3">
+        <h3 className="text-lg md:text-xl font-bold text-[#9b87f5] mb-2">
           {title}
         </h3>
-        <p className="text-gray-400 text-base">
+        <p className="text-gray-400 text-sm">
           {description}
         </p>
       </div>
@@ -86,15 +86,15 @@ const ProblemStatementsSection = () => {
   ];
 
   return (
-    <section id="problem-statements" className="bg-black py-16 md:py-24">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-4">Problem Statements</h2>
-        <p className="text-gray-400 text-center mb-16 max-w-4xl mx-auto text-lg">
+    <section id="problem-statements" className="bg-black py-16 md:py-20">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">Problem Statements</h2>
+        <p className="text-gray-400 text-center mb-12 max-w-3xl mx-auto text-base">
           The hackathon presents diverse challenges across multiple domains, allowing participants 
           to apply their skills to real-world problems.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {problemStatements.map((problem, index) => (
             <ProblemCard 
               key={index}
