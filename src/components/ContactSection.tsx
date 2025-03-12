@@ -102,9 +102,9 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">Phone</h3>
-                  <p className="text-white/60">📞 INDIA: +91 93465 75094</p>
-                  <p className="text-white/60">📞 MALAYSIA: +60 11 5305 6719</p>
-                  <p className="text-white/60">📞 USA/CANADA: +1 (945) 267-3482</p>
+                  <p className="text-white/60">INDIA: +91 93465 75094</p>
+                  <p className="text-white/60">MALAYSIA: +60 11 5305 6719</p>
+                  <p className="text-white/60">USA/CANADA: +1 (945) 267-3482</p>
                 </div>
               </div>
               
@@ -114,7 +114,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">Email</h3>
-                  <p className="text-white/60">✉️ Hello@CognitBotz.com</p>
+                  <p className="text-white/60">Hello@CognitBotz.com</p>
                 </div>
               </div>
             </div>
