@@ -35,6 +35,7 @@ export type RegistrationData = {
 const Registration = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<RegistrationData>({
     firstName: '',
     lastName: '',
@@ -73,11 +74,32 @@ const Registration = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // Here you would typically send the data to your server
-    console.log('Form submitted:', formData);
-    toast.success('Registration successful! We will be in touch soon.');
-    navigate('/');
+  const handleSubmit = async () => {
+    try {
+      setIsSubmitting(true);
+      
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+      
+      toast.success('Registration successful! We will be in touch soon.');
+      navigate('/');
+    } catch (error) {
+      console.error('Registration error:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to submit registration');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -114,6 +136,7 @@ const Registration = () => {
                 updateFormData={updateFormData}
                 onSubmit={handleSubmit}
                 onPrevious={handlePrevious}
+                isSubmitting={isSubmitting}
               />
             )}
           </div>

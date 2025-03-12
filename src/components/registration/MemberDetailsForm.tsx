@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Loader2 } from 'lucide-react';
 import { RegistrationData } from '@/pages/Registration';
 
 type MemberDetailsFormProps = {
@@ -11,6 +11,7 @@ type MemberDetailsFormProps = {
   updateFormData: (data: Partial<RegistrationData>) => void;
   onSubmit: () => void;
   onPrevious: () => void;
+  isSubmitting?: boolean;
 };
 
 const problemStatementOptions = [
@@ -22,7 +23,7 @@ const problemStatementOptions = [
   "Cloud Computing"
 ];
 
-const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: MemberDetailsFormProps) => {
+const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious, isSubmitting = false }: MemberDetailsFormProps) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
@@ -62,6 +63,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             onChange={(e) => updateFormData({ member1Name: e.target.value })}
             className="bg-[#121212] border-[#333] text-white h-12"
             required
+            disabled={isSubmitting}
           />
         </div>
         
@@ -77,6 +79,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             onChange={(e) => updateFormData({ member1Email: e.target.value })}
             className="bg-[#121212] border-[#333] text-white h-12"
             required
+            disabled={isSubmitting}
           />
         </div>
         
@@ -91,6 +94,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             value={formData.member2Name}
             onChange={(e) => updateFormData({ member2Name: e.target.value })}
             className="bg-[#121212] border-[#333] text-white h-12"
+            disabled={isSubmitting}
           />
         </div>
         
@@ -105,6 +109,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             value={formData.member2Email}
             onChange={(e) => updateFormData({ member2Email: e.target.value })}
             className="bg-[#121212] border-[#333] text-white h-12"
+            disabled={isSubmitting}
           />
         </div>
         
@@ -118,6 +123,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             onChange={(e) => updateFormData({ problemStatement: e.target.value })}
             className="bg-[#121212] border border-[#333] text-white h-12 w-full rounded-md px-3 appearance-none cursor-pointer"
             required
+            disabled={isSubmitting}
           >
             {problemStatementOptions.map((option, index) => (
               <option key={index} value={option === "Select a problem statement" ? "" : option}>
@@ -136,6 +142,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
             updateFormData({ termsAccepted: checked === true })
           }
           className="data-[state=checked]:bg-hackathon-purple data-[state=checked]:border-hackathon-purple h-5 w-5"
+          disabled={isSubmitting}
         />
         <label
           htmlFor="terms"
@@ -150,6 +157,7 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
           type="button"
           onClick={onPrevious}
           className="bg-transparent border border-hackathon-purple hover:bg-hackathon-purple/10 text-hackathon-purple"
+          disabled={isSubmitting}
         >
           <ChevronLeft size={16} /> Previous
         </Button>
@@ -157,9 +165,16 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious }: M
         <Button 
           type="submit"
           className="bg-hackathon-purple hover:bg-hackathon-purple/90 text-white px-8"
-          disabled={!isFormValid}
+          disabled={!isFormValid || isSubmitting}
         >
-          Submit
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            'Submit'
+          )}
         </Button>
       </div>
     </form>
