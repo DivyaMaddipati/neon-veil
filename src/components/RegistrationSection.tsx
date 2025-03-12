@@ -379,7 +379,7 @@ const RegistrationSection = () => {
                     {['Frontend', 'Backend', 'Mobile', 'AI/ML', 'UI/UX', 'Cloud', 'Blockchain', 'Cybersecurity', 'Game Dev', 'IoT', 'Data Science', 'AR/VR'].map((skill) => (
                       <div key={skill} className="flex items-center space-x-2">
                         <Checkbox 
-                          id={skill.toLowerCase().replace('/', '')} 
+                          id={skill.toLowerCase().replace('/', '')}
                           checked={formData.skills.includes(skill)}
                           onCheckedChange={(checked) => handleSkillsChange(skill, checked as boolean)}
                         />

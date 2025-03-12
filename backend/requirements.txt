@@ -1,0 +1,5 @@
+flask 
+flask-cors 
+pymongo 
+dnspython
+"pymongo[srv]"==3.12
