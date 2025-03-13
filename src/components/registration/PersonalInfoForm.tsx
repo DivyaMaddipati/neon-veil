@@ -35,7 +35,7 @@ const PersonalInfoForm = ({ formData, updateFormData, onNext, onPrevious }: Pers
       setIsCheckingEmail(true);
       
       // Check if email is already registered
-      const response = await fetch('http://localhost:5000/check-email', {
+      const response = await fetch('https://agentx-backend-n7j2.onrender.com/check-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

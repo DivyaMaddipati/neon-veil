@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { RegistrationData } from '@/pages/Registration';
 
@@ -43,7 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const storedToken = localStorage.getItem('authToken');
       if (storedToken) {
         try {
-          const response = await fetch('http://localhost:5000/user', {
+          const response = await fetch('https://agentx-backend-n7j2.onrender.com/user', {
             headers: {
               'Authorization': `Bearer ${storedToken}`
             }
@@ -75,7 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string, isAdmin = false) => {
     try {
       setLoading(true);
-      const endpoint = isAdmin ? 'http://localhost:5000/admin/login' : 'http://localhost:5000/login';
+      const endpoint = isAdmin ? 'https://agentx-backend-n7j2.onrender.com/admin/login' : 'https://agentx-backend-n7j2.onrender.com/login';
       
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -106,7 +107,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signup = async (userData: SignupData) => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/signup', {
+      const response = await fetch('https://agentx-backend-n7j2.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +138,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(true);
       
       // First, create the user account
-      const signupResponse = await fetch('http://localhost:5000/signup', {
+      const signupResponse = await fetch('https://agentx-backend-n7j2.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +163,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(signupData.user);
       
       // Now register for the hackathon with the auth token
-      const registrationResponse = await fetch('http://localhost:5000/register', {
+      const registrationResponse = await fetch('https://agentx-backend-n7j2.onrender.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

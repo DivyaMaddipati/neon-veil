@@ -35,7 +35,7 @@ const AdminDashboard = () => {
     // Fetch registrations
     const fetchRegistrations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/registrations', {
+        const response = await fetch('https://agentx-backend-n7j2.onrender.com/registrations', {
           headers: {
             'Authorization': `Bearer ${token}`
           }

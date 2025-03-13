@@ -37,7 +37,7 @@ const TeamProfile = () => {
       
       try {
         setIsLoading(true);
-        const response = await fetch('http://localhost:5000/team-profile', {
+        const response = await fetch('https://agentx-backend-n7j2.onrender.com/team-profile', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
