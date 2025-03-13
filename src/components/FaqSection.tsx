@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDown, ChevronUp, MessageSquareMore } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -67,7 +66,7 @@ const FaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 md:py-24 relative overflow-hidden">
+    <section id="faq" className="py-20 md:py-24 relative overflow-hidden font-roboto">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-1/4 left-[10%] w-64 h-64 rounded-full bg-[#6c43ff]/10 blur-[80px]"></div>
@@ -76,7 +75,7 @@ const FaqSection = () => {
       
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <div className="text-center mb-16 faq-animate opacity-0">
-          <h2 className="cyber-font text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
             <span className="text-[#6c43ff]">FAQ</span>s
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00]"></div>
           </h2>
@@ -104,7 +103,7 @@ const FaqSection = () => {
               >
                 <CollapsibleTrigger className="w-full text-left p-6 focus:outline-none">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-xl font-bold cyber-font">{faq.question}</h3>
+                    <h3 className="text-xl font-bold">{faq.question}</h3>
                     {openIndex === index ? (
                       <ChevronUp className="text-[#6c43ff] flex-shrink-0" size={24} />
                     ) : (
@@ -121,37 +120,6 @@ const FaqSection = () => {
             </Collapsible>
           ))}
         </div>
-        
-        <div className="mt-12 text-center faq-animate opacity-0">
-          <div className="neo-glass border border-[#6c43ff]/30 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center">
-              <MessageSquareMore className="text-[#6c43ff] mr-4" size={28} />
-              <div className="text-left">
-                <h3 className="text-xl font-bold cyber-font">Still have questions?</h3>
-                <p className="text-gray-400">We're here to help you</p>
-              </div>
-            </div>
-            <button 
-              onClick={() => navigate('/contact')}
-              className="bg-[#6c43ff] hover:bg-[#7e59ff] text-white py-2 px-6 rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(108,67,255,0.5)]"
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      {/* Floating help button */}
-      <div className="fixed bottom-6 right-6 z-50 animate-bounce-slow">
-        <button 
-          onClick={() => navigate('/contact')}
-          className="w-12 h-12 bg-[#6c43ff] hover:bg-[#7e59ff] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(108,67,255,0.4)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.7)] group"
-        >
-          <MessageSquareMore className="text-white" size={20} />
-          <span className="absolute right-full mr-2 bg-white text-black py-1 px-3 rounded text-sm font-medium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap">
-            Need help?
-          </span>
-        </button>
       </div>
     </section>
   );

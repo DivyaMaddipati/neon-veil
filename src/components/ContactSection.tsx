@@ -108,7 +108,7 @@ const ContactSection = () => {
       
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-16 contact-animate opacity-0">
-          <h2 className="cyber-font text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
             Get in <span className="text-[#6c43ff]">Touch</span>
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00]"></div>
           </h2>
@@ -121,7 +121,7 @@ const ContactSection = () => {
           {/* Contact Info Section */}
           <div className="flex flex-col space-y-8 contact-animate opacity-0">
             <div className="neo-glass border border-[#6c43ff]/30 rounded-xl p-6 md:p-8">
-              <h3 className="text-2xl font-bold cyber-font mb-6 text-white">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -213,7 +213,7 @@ const ContactSection = () => {
           {/* Form Section */}
           <div className="contact-animate opacity-0">
             <div className="neo-glass border border-[#6c43ff]/30 rounded-xl p-6 md:p-8">
-              <h3 className="text-2xl font-bold cyber-font mb-6 text-white">Send us a message</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Send us a message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="relative">

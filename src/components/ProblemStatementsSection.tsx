@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Lightbulb, 
@@ -23,10 +22,8 @@ const ProblemCard = ({ title, description, icon, index }: ProblemCardProps) => {
   
   return (
     <div 
-      className="h-[280px] perspective-1000 group animate-fade-in"
-      style={{
-        animationDelay: `${index * 0.1}s`,
-      }}
+      className="h-[280px] perspective-1000 group animate-fade-in font-roboto"
+      style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -39,7 +36,7 @@ const ProblemCard = ({ title, description, icon, index }: ProblemCardProps) => {
               {icon}
             </div>
           </div>
-          <h3 className="text-lg md:text-xl font-bold text-[#9b87f5] mb-2 cyber-font">
+          <h3 className="text-lg md:text-xl font-bold text-[#9b87f5] mb-2">
             {title}
           </h3>
           <p className="text-gray-400 text-sm">Click to view details</p>
@@ -49,7 +46,7 @@ const ProblemCard = ({ title, description, icon, index }: ProblemCardProps) => {
         {/* Back of card */}
         <div className="absolute inset-0 backface-hidden rotate-y-180 neo-glass-dark border border-[#6c43ff]/30 rounded-xl p-6 flex flex-col items-start justify-between shadow-[0_0_15px_rgba(108,67,255,0.2)]">
           <div>
-            <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#6c43ff] to-[#ff6b00] bg-clip-text text-transparent mb-4 cyber-font">
+            <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#6c43ff] to-[#ff6b00] bg-clip-text text-transparent mb-4">
               {title}
             </h3>
             <p className="text-gray-300 text-sm">
@@ -115,7 +112,7 @@ const ProblemStatementsSection = () => {
   ];
 
   return (
-    <section id="problem-statements" className="relative bg-black py-16 md:py-20 overflow-hidden">
+    <section id="problem-statements" className="relative bg-black py-16 md:py-20 overflow-hidden font-roboto">
       {/* Background effects */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-50">
         <div className="absolute top-[10%] right-[10%] w-64 h-64 rounded-full bg-[#6c43ff]/10 blur-[80px]"></div>
@@ -124,7 +121,7 @@ const ProblemStatementsSection = () => {
       
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="cyber-font text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
             Problem <span className="text-[#6c43ff]">Statements</span>
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00]"></div>
           </h2>

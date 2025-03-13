@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Twitter, Facebook, Instagram, ExternalLink } from 'lucide-react';
 
@@ -21,7 +20,7 @@ const JudgeCard = ({ name, description, shortDescription, role, image, index, so
   
   return (
     <div
-      className="relative group animate-fade-in"
+      className="relative group animate-fade-in font-roboto"
       style={{
         animationDelay: `${index * 0.15}s`,
       }}
@@ -38,7 +37,7 @@ const JudgeCard = ({ name, description, shortDescription, role, image, index, so
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1F2C] to-transparent opacity-80"></div>
           
           <div className="absolute bottom-0 left-0 w-full p-4 text-left">
-            <h3 className="text-xl font-bold text-white mb-1 cyber-font">{name}</h3>
+            <h3 className="text-xl font-bold text-white mb-1">{name}</h3>
             <p className="text-[#6c43ff] text-sm font-medium">{role}</p>
           </div>
         </div>
@@ -174,36 +173,21 @@ const JudgesSection = () => {
   ];
 
   return (
-    <section id="judges" className="bg-black py-16 md:py-24 relative overflow-hidden">
+    <section id="judges" className="bg-black py-16 md:py-24 relative overflow-hidden font-roboto">
       {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-[30%] right-[15%] w-64 h-64 rounded-full bg-[#6c43ff]/10 blur-[80px]"></div>
-        <div className="absolute bottom-[20%] left-[15%] w-64 h-64 rounded-full bg-[#ff6b00]/10 blur-[80px]"></div>
-      </div>
-      
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="text-center mb-16 judges-animate opacity-0">
-          <h2 className="cyber-font text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
             Expert <span className="text-[#6c43ff]">Judges</span>
-            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00]"></div>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Our distinguished panel of judges brings expertise from diverse technological domains
+            Our distinguished panel of judges brings expertise from diverse technological domains.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {judges.map((judge, index) => (
-            <JudgeCard 
-              key={index}
-              index={index}
-              name={judge.name}
-              role={judge.role}
-              shortDescription={judge.shortDescription}
-              description={judge.description}
-              image={judge.image}
-              socials={judge.socials}
-            />
+            <JudgeCard key={index} index={index} {...judge} />
           ))}
         </div>
       </div>
