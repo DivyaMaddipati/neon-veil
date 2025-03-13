@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -58,11 +59,11 @@ const HeroSection = () => {
           Build &nbsp; Automate &nbsp; Disrupt
         </p>
         
-        {/* Ensuring button is always visible */}
+        {/* Changed button back to oval shape with rounded-full class */}
         {!isAuthenticated && (
           <button 
             onClick={navigateToRegistration} 
-            className="bg-[#6c43ff] text-white font-medium py-3 px-8 md:px-10 rounded-md text-lg md:text-xl mb-12 md:mb-20 relative overflow-hidden group mt-6 md:mt-8 hover:shadow-[0_0_15px_rgba(108,67,255,0.8)] animate-pulse-glow"
+            className="bg-[#6c43ff] text-white font-medium py-3 px-8 md:px-10 rounded-full text-lg md:text-xl mb-12 md:mb-20 relative overflow-hidden group mt-6 md:mt-8 hover:shadow-[0_0_15px_rgba(108,67,255,0.8)] animate-pulse-glow"
           >
             <span className="relative z-10 flex items-center">
               Register Now
@@ -74,7 +75,6 @@ const HeroSection = () => {
         
         <div className="mt-10 md:mt-16 w-full max-w-4xl">
           <div className="neo-glass p-4 sm:p-6 md:p-8 border border-[#6c43ff]/30 rounded-xl shadow-[0_0_25px_rgba(108,67,255,0.3)]">
-            {/* Removed unnecessary font styling */}
             <p className="text-center text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-white/90">
               Registration Opens: 14 - 03 - 2025
             </p>
