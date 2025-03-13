@@ -40,9 +40,6 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 overflow-hidden">
-      {/* Particle background */}
-      <ParticleBackground />
-      
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-[20%] left-[10%] w-72 h-72 rounded-full bg-[#6c43ff]/20 blur-[100px] animate-pulse-slow"></div>
@@ -51,7 +48,7 @@ const HeroSection = () => {
 
       <div className="container mx-auto relative z-10 flex flex-col items-center text-center">
         <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="hero-animate opacity-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-4 tracking-wider font-roboto relative">
+          <h1 className="hero-animate opacity-0 text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-10xl font-extrabold mb-4 tracking-wider font-roboto relative">
             <Sparkles className="absolute -top-10 -left-12 text-[#6c43ff] w-8 h-8 animate-pulse opacity-75" />
             <span className="text-glow gradient-text-purple relative">
               Agent<span className="text-glow-intense">X</span>
