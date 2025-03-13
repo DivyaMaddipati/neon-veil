@@ -34,7 +34,7 @@ except FileNotFoundError:
         "admins": [
             {
                 "email": "admin@agentx.com",
-                "password": bcrypt.hashpw("admin123".encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+                "password": "admin123"
             }
         ]
     }
@@ -233,37 +233,20 @@ def admin_login():
         if not data or not data.get("email") or not data.get("password"):
             return jsonify({"error": "Email and password are required"}), 400
         
-        # Check admin credentials
+        # Check admin credentials - simple string comparison for passwords
         for admin in admin_credentials.get("admins", []):
-            if admin["email"] == data["email"]:
-                # Try to decode the hashed password if it starts with $2b$
-                try:
-                    # For hashed passwords (starts with $2b$)
-                    if admin["password"].startswith("$2b$"):
-                        is_valid = bcrypt.checkpw(
-                            data["password"].encode('utf-8'), 
-                            admin["password"].encode('utf-8')
-                        )
-                    else:
-                        # For plain text passwords
-                        is_valid = (data["password"] == admin["password"])
-                    
-                    if is_valid:
-                        # Create admin token
-                        token = create_token(admin["email"], is_admin=True)
-                        
-                        return jsonify({
-                            "message": "Admin login successful",
-                            "token": token,
-                            "user": {
-                                "email": admin["email"],
-                                "role": "admin"
-                            }
-                        }), 200
-                except Exception as e:
-                    print(f"Error checking password: {str(e)}")
-                    # Continue to the next admin if there's an error
-                    continue
+            if admin["email"] == data["email"] and admin["password"] == data["password"]:
+                # Create admin token
+                token = create_token(admin["email"], is_admin=True)
+                
+                return jsonify({
+                    "message": "Admin login successful",
+                    "token": token,
+                    "user": {
+                        "email": admin["email"],
+                        "role": "admin"
+                    }
+                }), 200
         
         return jsonify({"error": "Invalid admin credentials"}), 401
         
