@@ -5,7 +5,6 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import ParticleBackground from './ParticleBackground';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
