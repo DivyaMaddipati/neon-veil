@@ -1,8 +1,26 @@
+
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp, LogOut, User } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
+
+// Define proper TypeScript interfaces for our navigation items
+interface DropdownItem {
+  name: string;
+  href: string;
+  isFullPath?: boolean;
+}
+
+interface NavLink {
+  name: string;
+  href: string;
+  hasDropdown: boolean;
+  isFullPath?: boolean;
+  dropdownItems?: DropdownItem[];
+}
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +29,8 @@ const Navbar = () => {
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const isMobile = useIsMobile();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout, isAdmin } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +58,7 @@ const Navbar = () => {
     };
   }, [activeDropdown]);
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { 
       name: "Hackathon", 
       href: "#home", 
@@ -76,6 +96,16 @@ const Navbar = () => {
     },
   ];
 
+  // Add admin dashboard link for admin users
+  if (isAuthenticated && isAdmin) {
+    navLinks.push({
+      name: "Admin",
+      href: "/admin-dashboard",
+      hasDropdown: false,
+      isFullPath: true
+    });
+  }
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -96,6 +126,12 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    toast.success('Logged out successfully');
+    navigate('/');
   };
 
   const isHomePage = location.pathname === '/';
@@ -128,16 +164,18 @@ const Navbar = () => {
                     }
                   </button>
                 ) : (
-                  <a
-                    href={isHomePage ? link.href : `/${link.href}`}
+                  <Link
+                    to={link.isFullPath ? link.href : isHomePage ? link.href : `/${link.href}`}
                     onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
+                      if (!link.isFullPath) {
+                        e.preventDefault();
+                        scrollToSection(link.href);
+                      }
                     }}
                     className="text-white group-hover:text-hackathon-purple transition-colors duration-200"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 )}
                 
                 {link.hasDropdown && (
@@ -181,12 +219,36 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="hidden md:block">
-            <Link to="/#">
-              <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
-                Login
-              </Button>
-            </Link>
+          <div className="hidden md:flex items-center space-x-4">
+            {isAuthenticated ? (
+              <div className="flex items-center gap-4">
+                <div className="text-white">
+                  {user?.firstName ? `${user.firstName} ${user.lastName}` : user?.email}
+                </div>
+                <Button
+                  onClick={handleLogout}
+                  variant="outline"
+                  className="border-hackathon-purple text-hackathon-purple hover:bg-hackathon-purple/10"
+                >
+                  <LogOut size={16} className="mr-2" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button className="bg-transparent border border-hackathon-purple text-hackathon-purple hover:bg-hackathon-purple/10">
+                    <User size={16} className="mr-2" />
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -224,16 +286,20 @@ const Navbar = () => {
                       }
                     </button>
                   ) : (
-                    <a
-                      href={isHomePage ? link.href : `/${link.href}`}
+                    <Link
+                      to={link.isFullPath ? link.href : isHomePage ? link.href : `/${link.href}`}
                       onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(link.href);
+                        if (!link.isFullPath) {
+                          e.preventDefault();
+                          scrollToSection(link.href);
+                        } else {
+                          closeMenu();
+                        }
                       }}
                       className="text-xl text-white flex items-center justify-between w-full py-3 border-b border-white/10"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   )}
                   
                   {link.hasDropdown && (
@@ -272,11 +338,37 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              <Link to="/registration" onClick={closeMenu}>
-                <Button className="bg-white text-black hover:bg-white/90 rounded-full w-full mt-4 py-6">
-                  Register
-                </Button>
-              </Link>
+              
+              {isAuthenticated ? (
+                <div className="pt-4 flex flex-col gap-4">
+                  <div className="text-white text-center py-2">
+                    {user?.firstName ? `Logged in as ${user.firstName} ${user.lastName}` : user?.email}
+                  </div>
+                  <Button 
+                    onClick={() => {
+                      handleLogout();
+                      closeMenu();
+                    }}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    <LogOut size={16} className="mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <div className="mt-6 flex flex-col gap-4">
+                  <Link to="/login" onClick={closeMenu}>
+                    <Button className="w-full bg-transparent border border-hackathon-purple text-hackathon-purple hover:bg-hackathon-purple/10">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signup" onClick={closeMenu}>
+                    <Button className="w-full bg-white text-black hover:bg-white/90">
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </nav>
           </div>
         </div>
