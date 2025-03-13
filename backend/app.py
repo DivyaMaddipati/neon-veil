@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -7,6 +8,7 @@ from datetime import datetime
 import bcrypt
 import jwt
 from functools import wraps
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)  # Allow cross-origin requests with credentials
@@ -87,7 +89,30 @@ def admin_required(f):
     
     return decorated
 
+@app.route('/check-email', methods=['POST'])
+def check_email():
+    """Check if an email is already registered"""
+    try:
+        data = request.json
+        email = data.get('email')
+        
+        if not email:
+            return jsonify({"error": "Email is required"}), 400
+            
+        # Check if the email exists in users collection
+        existing_user = users_collection.find_one({"email": email})
+        
+        if existing_user:
+            return jsonify({"error": "Email already registered"}), 409
+            
+        return jsonify({"message": "Email is available"}), 200
+        
+    except Exception as e:
+        print(f"Error checking email: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/register', methods=['POST'])
+@token_required
 def register():
     try:
         data = request.json  # Get JSON data from request
@@ -99,6 +124,9 @@ def register():
         
         # Add registration timestamp
         data["registrationDate"] = datetime.utcnow().isoformat()
+        
+        # Link to user account
+        data["userId"] = request.user.get('user_id')
         
         # Format data for MongoDB
         registration_data = {
@@ -119,6 +147,7 @@ def register():
             "members": [],
             "problemStatement": data.get("problemStatement", ""),
             "registrationDate": data.get("registrationDate", ""),
+            "userId": data.get("userId", ""),
             "status": "pending"  # Initial status
         }
         
@@ -141,6 +170,30 @@ def register():
             "id": str(inserted_id)
         }), 201
 
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/team-profile', methods=['GET'])
+@token_required
+def get_team_profile():
+    """Get the team profile for the logged in user"""
+    try:
+        # Get user ID from token
+        user_id = request.user.get('user_id')
+        
+        # Find team registration for this user
+        team = collection.find_one({"userId": user_id})
+        
+        if not team:
+            return jsonify({"message": "No team registration found for this user"}), 404
+            
+        # Convert ObjectId to string for JSON serialization
+        if '_id' in team:
+            team['_id'] = str(team['_id'])
+            
+        return jsonify({"team": team}), 200
+        
     except Exception as e:
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -276,7 +329,6 @@ def get_user_profile():
         else:
             # For regular users
             user_id = request.user.get('user_id')
-            from bson.objectid import ObjectId
             
             user = users_collection.find_one({"_id": ObjectId(user_id)})
             if not user:
@@ -298,7 +350,10 @@ def get_user_profile():
 def get_registrations():
     """Get all registrations (admin only)"""
     try:
-        registrations = list(collection.find({}, {'_id': 0}))
+        registrations = list(collection.find({}))
+        # Convert ObjectId to string for JSON serialization
+        for reg in registrations:
+            reg['_id'] = str(reg['_id'])
         return jsonify({"registrations": registrations}), 200
     except Exception as e:
         print(f"Error: {str(e)}")

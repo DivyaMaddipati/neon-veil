@@ -85,7 +85,7 @@ const Navbar = () => {
       href: "#schedule", 
       hasDropdown: true,
       dropdownItems: [
-        { name: "Registration", href: "/registration", isFullPath: true },
+        { name: "Register", href: "/registration", isFullPath: true },
         { name: "Sponsors", href: "#sponsors" },
       ]
     },
@@ -101,6 +101,16 @@ const Navbar = () => {
     navLinks.push({
       name: "Admin",
       href: "/admin-dashboard",
+      hasDropdown: false,
+      isFullPath: true
+    });
+  }
+
+  // Add team profile link for authenticated users
+  if (isAuthenticated && !isAdmin) {
+    navLinks.push({
+      name: "My Team",
+      href: "/team-profile",
       hasDropdown: false,
       isFullPath: true
     });
@@ -242,9 +252,9 @@ const Navbar = () => {
                     Login
                   </Button>
                 </Link>
-                <Link to="/signup">
+                <Link to="/registration">
                   <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
-                    Sign Up
+                    Register
                   </Button>
                 </Link>
               </>
@@ -362,9 +372,9 @@ const Navbar = () => {
                       Login
                     </Button>
                   </Link>
-                  <Link to="/signup" onClick={closeMenu}>
+                  <Link to="/registration" onClick={closeMenu}>
                     <Button className="w-full bg-white text-black hover:bg-white/90">
-                      Sign Up
+                      Register
                     </Button>
                   </Link>
                 </div>

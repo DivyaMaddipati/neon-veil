@@ -8,6 +8,7 @@ import PersonalInfoForm from '@/components/registration/PersonalInfoForm';
 import TeamDetailsForm from '@/components/registration/TeamDetailsForm';
 import MemberDetailsForm from '@/components/registration/MemberDetailsForm';
 import { toast } from 'sonner';
+import { useAuth } from '@/contexts/AuthContext';
 
 export type RegistrationData = {
   // Personal Info
@@ -15,6 +16,7 @@ export type RegistrationData = {
   lastName: string;
   email: string;
   phone: string;
+  password: string;
   
   // Team Details
   teamName: string;
@@ -32,6 +34,7 @@ export type RegistrationData = {
 
 const Registration = () => {
   const navigate = useNavigate();
+  const { signupWithRegistration } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<RegistrationData>({
@@ -39,6 +42,7 @@ const Registration = () => {
     lastName: '',
     email: '',
     phone: '',
+    password: '',
     teamName: '',
     collegeName: '',
     numberOfMembers: 1,
@@ -74,6 +78,13 @@ const Registration = () => {
     try {
       setIsSubmitting(true);
       
+      // First, create a user account
+      if (!formData.password) {
+        toast.error('Please set a password for your account');
+        setIsSubmitting(false);
+        return;
+      }
+      
       // Prepare data according to number of members
       const submissionData = {
         ...formData,
@@ -86,22 +97,11 @@ const Registration = () => {
         ] : []
       };
       
-      const response = await fetch('http://localhost:5000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submissionData),
-      });
+      // Register the user with their team data
+      await signupWithRegistration(submissionData);
       
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong');
-      }
-      
-      toast.success('Registration successful! We will be in touch soon.');
-      navigate('/');
+      toast.success('Registration successful! You are now logged in.');
+      navigate('/team-profile');
     } catch (error) {
       console.error('Registration error:', error);
       toast.error(error instanceof Error ? error.message : 'Failed to submit registration');
