@@ -76,9 +76,9 @@ const HeroSection = () => {
         <div className="mt-10 md:mt-16 w-full max-w-4xl">
           <div className="neo-glass p-4 sm:p-6 md:p-8 border border-[#6c43ff]/30 rounded-xl shadow-[0_0_25px_rgba(108,67,255,0.3)]">
             <p className="text-center text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-white/90">
-              Registration Opens: 14 - 03 - 2025
+              Registration Ends by 26 - 03 - 2025
             </p>
-            <CountdownTimer targetDate="2025-03-14T00:00:00" />
+            <CountdownTimer targetDate="2025-03-26T00:00:00" />
           </div>
         </div>
       </div>
