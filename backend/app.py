@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -236,21 +235,35 @@ def admin_login():
         
         # Check admin credentials
         for admin in admin_credentials.get("admins", []):
-            if admin["email"] == data["email"] and bcrypt.checkpw(
-                data["password"].encode('utf-8'), 
-                admin["password"].encode('utf-8')
-            ):
-                # Create admin token
-                token = create_token(admin["email"], is_admin=True)
-                
-                return jsonify({
-                    "message": "Admin login successful",
-                    "token": token,
-                    "user": {
-                        "email": admin["email"],
-                        "role": "admin"
-                    }
-                }), 200
+            if admin["email"] == data["email"]:
+                # Try to decode the hashed password if it starts with $2b$
+                try:
+                    # For hashed passwords (starts with $2b$)
+                    if admin["password"].startswith("$2b$"):
+                        is_valid = bcrypt.checkpw(
+                            data["password"].encode('utf-8'), 
+                            admin["password"].encode('utf-8')
+                        )
+                    else:
+                        # For plain text passwords
+                        is_valid = (data["password"] == admin["password"])
+                    
+                    if is_valid:
+                        # Create admin token
+                        token = create_token(admin["email"], is_admin=True)
+                        
+                        return jsonify({
+                            "message": "Admin login successful",
+                            "token": token,
+                            "user": {
+                                "email": admin["email"],
+                                "role": "admin"
+                            }
+                        }), 200
+                except Exception as e:
+                    print(f"Error checking password: {str(e)}")
+                    # Continue to the next admin if there's an error
+                    continue
         
         return jsonify({"error": "Invalid admin credentials"}), 401
         
@@ -312,4 +325,3 @@ if __name__ == '__main__':
     # Use environment variable for port if available (for cloud deployment)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
-
