@@ -253,7 +253,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/registration">
-                  <Button className="bg-white text-black hover:bg-white/90 rounded-full px-8 lg:px-10 font-normal">
+                  <Button className="bg-white text-black hover:bg-white/90 rounded-md px-8 lg:px-10 font-normal">
                     Register
                   </Button>
                 </Link>
@@ -374,7 +374,7 @@ const Navbar = () => {
                     </Button>
                   </Link>
                   <Link to="/registration" onClick={closeMenu}>
-                    <Button className="w-full bg-white text-black hover:bg-white/90">
+                    <Button className="w-full bg-white text-black hover:bg-white/90 rounded-md">
                       Register
                     </Button>
                   </Link>
