@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Lightbulb, 
   Brain, 
@@ -7,32 +7,59 @@ import {
   Bot, 
   TrafficCone, 
   Newspaper, 
-  Server 
+  Server,
+  ArrowRight 
 } from 'lucide-react';
 
-const ProblemCard = ({ title, description, icon, index }: { 
+type ProblemCardProps = { 
   title: string; 
   description: string; 
   icon: React.ReactNode;
   index: number;
-}) => {
+};
+
+const ProblemCard = ({ title, description, icon, index }: ProblemCardProps) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  
   return (
     <div 
-      className="bg-[#1A1F2C] rounded-lg overflow-hidden shadow-md border border-gray-800 hover:border-hackathon-purple/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,67,255,0.3)] h-full animate-fade-in"
+      className="h-[280px] perspective-1000 group animate-fade-in"
       style={{
         animationDelay: `${index * 0.1}s`,
       }}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
     >
-      <div className="p-5 text-center">
-        <div className="flex justify-center mb-3">
-          {icon}
+      <div className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
+        {/* Front of card */}
+        <div className="absolute inset-0 backface-hidden neo-glass border border-[#6c43ff]/30 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-[0_0_15px_rgba(108,67,255,0.2)] hover:shadow-[0_0_25px_rgba(108,67,255,0.4)] transition-all duration-300">
+          <div className="flex justify-center mb-5 transform transition-transform duration-500 group-hover:scale-110">
+            <div className="p-3 rounded-full bg-[#1A1F2C] border border-[#6c43ff]/40 shadow-[0_0_10px_rgba(108,67,255,0.3)]">
+              {icon}
+            </div>
+          </div>
+          <h3 className="text-lg md:text-xl font-bold text-[#9b87f5] mb-2 cyber-font">
+            {title}
+          </h3>
+          <p className="text-gray-400 text-sm">Click to view details</p>
+          <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00] w-0 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
         </div>
-        <h3 className="text-base md:text-lg font-bold text-[#9b87f5] mb-2">
-          {title}
-        </h3>
-        <p className="text-gray-400 text-xs line-clamp-3">
-          {description}
-        </p>
+        
+        {/* Back of card */}
+        <div className="absolute inset-0 backface-hidden rotate-y-180 neo-glass-dark border border-[#6c43ff]/30 rounded-xl p-6 flex flex-col items-start justify-between shadow-[0_0_15px_rgba(108,67,255,0.2)]">
+          <div>
+            <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#6c43ff] to-[#ff6b00] bg-clip-text text-transparent mb-4 cyber-font">
+              {title}
+            </h3>
+            <p className="text-gray-300 text-sm">
+              {description}
+            </p>
+          </div>
+          <button className="mt-4 text-sm text-[#6c43ff] hover:text-white flex items-center self-end transition-colors">
+            Learn more <ArrowRight className="ml-1 w-4 h-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -88,15 +115,26 @@ const ProblemStatementsSection = () => {
   ];
 
   return (
-    <section id="problem-statements" className="bg-black py-16 md:py-20">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">Problem Statements</h2>
-        <p className="text-gray-400 text-center mb-10 max-w-3xl mx-auto text-sm">
-          The hackathon presents diverse challenges across multiple domains, allowing participants 
-          to apply their skills to real-world problems.
-        </p>
+    <section id="problem-statements" className="relative bg-black py-16 md:py-20 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-50">
+        <div className="absolute top-[10%] right-[10%] w-64 h-64 rounded-full bg-[#6c43ff]/10 blur-[80px]"></div>
+        <div className="absolute bottom-[20%] left-[5%] w-64 h-64 rounded-full bg-[#ff6b00]/10 blur-[80px]"></div>
+      </div>
+      
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="cyber-font text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+            Problem <span className="text-[#6c43ff]">Statements</span>
+            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#6c43ff] to-[#ff6b00]"></div>
+          </h2>
+          <p className="text-gray-400 max-w-3xl mx-auto text-sm md:text-base">
+            The hackathon presents diverse challenges across multiple domains, allowing participants 
+            to apply their skills to real-world problems.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {problemStatements.map((problem, index) => (
             <ProblemCard 
               key={index}
