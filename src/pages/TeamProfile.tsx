@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -179,7 +180,7 @@ const TeamProfile = () => {
               <p className="text-gray-400 mb-6">You haven't registered a team for the hackathon yet.</p>
               <Link to="/registration">
                 <Button className="bg-hackathon-purple hover:bg-hackathon-purple/90 text-white">
-                  Register Now
+                  Complete Registration
                 </Button>
               </Link>
             </div>
