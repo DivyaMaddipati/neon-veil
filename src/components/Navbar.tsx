@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 
-// Define proper TypeScript interfaces for our navigation items
 interface DropdownItem {
   name: string;
   href: string;
@@ -96,7 +94,6 @@ const Navbar = () => {
     },
   ];
 
-  // Add admin dashboard link for admin users
   if (isAuthenticated && isAdmin) {
     navLinks.push({
       name: "Admin",
@@ -106,7 +103,6 @@ const Navbar = () => {
     });
   }
 
-  // Add team profile link for authenticated users
   if (isAuthenticated && !isAdmin) {
     navLinks.push({
       name: "My Team",
@@ -158,7 +154,6 @@ const Navbar = () => {
             AgentX
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
             {navLinks.map((link, index) => (
               <div key={index} className="relative group">
@@ -233,7 +228,11 @@ const Navbar = () => {
             {isAuthenticated ? (
               <div className="flex items-center gap-4">
                 <div className="text-white">
-                  {user?.firstName ? `${user.firstName} ${user.lastName}` : user?.email}
+                  {isAdmin && user?.name 
+                    ? user.name 
+                    : user?.firstName 
+                      ? `${user.firstName} ${user.lastName}` 
+                      : user?.email}
                 </div>
                 <Button
                   onClick={handleLogout}
@@ -261,7 +260,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             className="md:hidden text-white p-2"
             onClick={toggleMenu}
@@ -272,7 +270,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobile && (
         <div 
           className={`fixed inset-0 bg-black z-40 transition-all duration-300 ease-in-out transform ${
@@ -352,7 +349,11 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <div className="pt-4 flex flex-col gap-4">
                   <div className="text-white text-center py-2">
-                    {user?.firstName ? `Logged in as ${user.firstName} ${user.lastName}` : user?.email}
+                    {isAdmin && user?.name 
+                      ? `Logged in as ${user.name}` 
+                      : user?.firstName 
+                        ? `Logged in as ${user.firstName} ${user.lastName}` 
+                        : user?.email}
                   </div>
                   <Button 
                     onClick={() => {

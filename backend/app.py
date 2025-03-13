@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -35,6 +34,7 @@ except FileNotFoundError:
     admin_credentials = {
         "admins": [
             {
+                "name": "Admin",
                 "email": "admin@agentx.com",
                 "password": "admin123"
             }
@@ -297,6 +297,7 @@ def admin_login():
                     "token": token,
                     "user": {
                         "email": admin["email"],
+                        "name": admin.get("name", "Admin"), # Include name in response
                         "role": "admin"
                     }
                 }), 200
@@ -323,6 +324,7 @@ def get_user_profile():
                 if admin["email"] == request.user.get('user_id'):
                     return jsonify({
                         "email": admin["email"],
+                        "name": admin.get("name", "Admin"), # Include name in response
                         "role": "admin"
                     }), 200
             return jsonify({"error": "Admin not found"}), 404

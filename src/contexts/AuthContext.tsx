@@ -6,6 +6,7 @@ interface User {
   email: string;
   firstName?: string;
   lastName?: string;
+  name?: string; // Added name field for admin users
   role: 'user' | 'admin';
   teamId?: string;
 }
