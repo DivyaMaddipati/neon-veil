@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -27,7 +26,6 @@ const TeamProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect if not authenticated
     if (!isAuthenticated && !isLoading) {
       navigate('/login');
       return;
