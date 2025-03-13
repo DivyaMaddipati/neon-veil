@@ -7,6 +7,21 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 
+// Define proper TypeScript interfaces for our navigation items
+interface DropdownItem {
+  name: string;
+  href: string;
+  isFullPath?: boolean;
+}
+
+interface NavLink {
+  name: string;
+  href: string;
+  hasDropdown: boolean;
+  isFullPath?: boolean;
+  dropdownItems?: DropdownItem[];
+}
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,7 +58,7 @@ const Navbar = () => {
     };
   }, [activeDropdown]);
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { 
       name: "Hackathon", 
       href: "#home", 
