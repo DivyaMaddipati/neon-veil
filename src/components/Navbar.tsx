@@ -247,7 +247,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <Button className="bg-transparent border border-hackathon-purple text-hackathon-purple hover:bg-hackathon-purple/10">
+                  <Button className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white border-2 border-[#9F7AEA] rounded-md px-6 py-2 transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:shadow-[0_0_20px_rgba(139,92,246,0.8)] font-medium">
                     <User size={16} className="mr-2" />
                     Login
                   </Button>
@@ -368,7 +368,8 @@ const Navbar = () => {
               ) : (
                 <div className="mt-6 flex flex-col gap-4">
                   <Link to="/login" onClick={closeMenu}>
-                    <Button className="w-full bg-transparent border border-hackathon-purple text-hackathon-purple hover:bg-hackathon-purple/10">
+                    <Button className="w-full bg-[#8B5CF6] hover:bg-[#7C3AED] text-white border-2 border-[#9F7AEA] shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:shadow-[0_0_20px_rgba(139,92,246,0.8)]">
+                      <User size={16} className="mr-2" />
                       Login
                     </Button>
                   </Link>
