@@ -27,12 +27,15 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious, isS
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // Validate form
-    const isValid = 
-      formData.member1Name.trim() !== '' && 
-      formData.member1Email.trim() !== '' &&
-      formData.problemStatement.trim() !== '' &&
-      formData.termsAccepted;
+    // Validate form based on team size
+    let isValid = formData.problemStatement.trim() !== '' && formData.termsAccepted;
+    
+    // If team size is 2, validate first member's info
+    if (formData.numberOfMembers >= 2) {
+      isValid = isValid && 
+        formData.member1Name.trim() !== '' && 
+        formData.member1Email.trim() !== '';
+    }
     
     setIsFormValid(isValid);
   }, [formData]);
@@ -51,67 +54,42 @@ const MemberDetailsForm = ({ formData, updateFormData, onSubmit, onPrevious, isS
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <label htmlFor="member1Name" className="block text-hackathon-purple font-medium">
-            Member 1 Name
-          </label>
-          <Input
-            id="member1Name"
-            type="text"
-            placeholder="Full Name"
-            value={formData.member1Name}
-            onChange={(e) => updateFormData({ member1Name: e.target.value })}
-            className="bg-[#121212] border-[#333] text-white h-12"
-            required
-            disabled={isSubmitting}
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="member1Email" className="block text-hackathon-purple font-medium">
-            Member 1 Email
-          </label>
-          <Input
-            id="member1Email"
-            type="email"
-            placeholder="example@gmail.com"
-            value={formData.member1Email}
-            onChange={(e) => updateFormData({ member1Email: e.target.value })}
-            className="bg-[#121212] border-[#333] text-white h-12"
-            required
-            disabled={isSubmitting}
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="member2Name" className="block text-hackathon-purple font-medium">
-            Member 2 Name
-          </label>
-          <Input
-            id="member2Name"
-            type="text"
-            placeholder="Full Name"
-            value={formData.member2Name}
-            onChange={(e) => updateFormData({ member2Name: e.target.value })}
-            className="bg-[#121212] border-[#333] text-white h-12"
-            disabled={isSubmitting}
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="member2Email" className="block text-hackathon-purple font-medium">
-            Member 2 Email
-          </label>
-          <Input
-            id="member2Email"
-            type="email"
-            placeholder="example@gmail.com"
-            value={formData.member2Email}
-            onChange={(e) => updateFormData({ member2Email: e.target.value })}
-            className="bg-[#121212] border-[#333] text-white h-12"
-            disabled={isSubmitting}
-          />
-        </div>
+        {/* Only show member fields if team size is 2 */}
+        {formData.numberOfMembers >= 2 && (
+          <>
+            <div className="space-y-2">
+              <label htmlFor="member1Name" className="block text-hackathon-purple font-medium">
+                Member 1 Name
+              </label>
+              <Input
+                id="member1Name"
+                type="text"
+                placeholder="Full Name"
+                value={formData.member1Name}
+                onChange={(e) => updateFormData({ member1Name: e.target.value })}
+                className="bg-[#121212] border-[#333] text-white h-12"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="member1Email" className="block text-hackathon-purple font-medium">
+                Member 1 Email
+              </label>
+              <Input
+                id="member1Email"
+                type="email"
+                placeholder="example@gmail.com"
+                value={formData.member1Email}
+                onChange={(e) => updateFormData({ member1Email: e.target.value })}
+                className="bg-[#121212] border-[#333] text-white h-12"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+          </>
+        )}
         
         <div className="space-y-2 col-span-1 md:col-span-2">
           <label htmlFor="problemStatement" className="block text-hackathon-purple font-medium">

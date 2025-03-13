@@ -26,8 +26,6 @@ export type RegistrationData = {
   // Member Details
   member1Name: string;
   member1Email: string;
-  member2Name: string;
-  member2Email: string;
   problemStatement: string;
   termsAccepted: boolean;
 };
@@ -43,13 +41,11 @@ const Registration = () => {
     phone: '',
     teamName: '',
     collegeName: '',
-    numberOfMembers: 2,
+    numberOfMembers: 1,
     teamLeaderName: '',
     teamLeaderEmail: '',
     member1Name: '',
     member1Email: '',
-    member2Name: '',
-    member2Email: '',
     problemStatement: '',
     termsAccepted: false
   });
@@ -78,12 +74,24 @@ const Registration = () => {
     try {
       setIsSubmitting(true);
       
+      // Prepare data according to number of members
+      const submissionData = {
+        ...formData,
+        // Only include member details if team size is 2
+        members: formData.numberOfMembers === 2 ? [
+          {
+            name: formData.member1Name,
+            email: formData.member1Email
+          }
+        ] : []
+      };
+      
       const response = await fetch('http://localhost:5000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
       
       const data = await response.json();

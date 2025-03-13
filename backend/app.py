@@ -42,24 +42,23 @@ def register():
             "teamLeaderName": data.get("teamLeaderName", ""),
             "teamLeaderEmail": data.get("teamLeaderEmail", ""),
             
-            # Member Details
-            "members": [
-                {
-                    "name": data.get("member1Name", ""),
-                    "email": data.get("member1Email", "")
-                }
-            ],
+            # Member Details - Initialize with empty array
+            "members": [],
             "problemStatement": data.get("problemStatement", ""),
             "registrationDate": data.get("registrationDate", ""),
             "status": "pending"  # Initial status
         }
         
-        # Add member 2 if provided
-        if data.get("member2Name") and data.get("member2Email"):
-            registration_data["members"].append({
-                "name": data.get("member2Name", ""),
-                "email": data.get("member2Email", "")
-            })
+        # Add members based on data provided
+        if "members" in data and isinstance(data["members"], list):
+            registration_data["members"] = data["members"]
+        else:
+            # Backward compatibility for direct member fields
+            if data.get("numberOfMembers", 1) >= 2 and data.get("member1Name") and data.get("member1Email"):
+                registration_data["members"].append({
+                    "name": data.get("member1Name", ""),
+                    "email": data.get("member1Email", "")
+                })
         
         # Insert data into MongoDB
         inserted_id = collection.insert_one(registration_data).inserted_id

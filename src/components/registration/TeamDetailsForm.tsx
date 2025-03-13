@@ -74,17 +74,16 @@ const TeamDetailsForm = ({ formData, updateFormData, onNext, onPrevious }: TeamD
           <label htmlFor="numberOfMembers" className="block text-hackathon-purple font-medium">
             Number of Team Members
           </label>
-          <Input
+          <select
             id="numberOfMembers"
-            type="number"
-            placeholder="Eg: 3"
-            min={1}
-            max={4}
             value={formData.numberOfMembers}
-            onChange={(e) => updateFormData({ numberOfMembers: parseInt(e.target.value) || 2 })}
-            className="bg-[#121212] border-[#333] text-white h-12"
+            onChange={(e) => updateFormData({ numberOfMembers: parseInt(e.target.value) || 1 })}
+            className="bg-[#121212] border border-[#333] text-white h-12 w-full rounded-md px-3 appearance-none cursor-pointer"
             required
-          />
+          >
+            <option value="1">1 (Solo)</option>
+            <option value="2">2</option>
+          </select>
         </div>
         
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
